@@ -10,8 +10,8 @@ Our CSS uses Twitter Bootstrap.
 
 
 # Checklist
-Markup : -[ ] Access Database Understood 
-         -[ ] SQL Conversion Design Complete
-         -[ ] Placeholder
-         -[x] Github made
+-[ ] Access Database Understood 
+-[ ] SQL Conversion Design Complete
+-[ ] Placeholder
+-[x] Github made
 
