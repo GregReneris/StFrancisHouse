@@ -11,10 +11,7 @@ Our CSS uses Twitter Bootstrap.
 
 # Checklist
 
--[ ] 
--[ ] Access Database Understood 
--[ ] SQL Conversion Design Complete
--[ ] Placeholder
--[x] Github made
-
--[ ] test
+- [ ] Access Database Understood 
+- [ ] SQL Conversion Design Complete
+- [ ] Placeholder
+- [x] Github made
