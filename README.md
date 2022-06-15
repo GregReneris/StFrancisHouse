@@ -10,7 +10,8 @@ Our CSS uses Twitter Bootstrap.
 
 
 #Checklist
-Markup : - [ ] Access Database Understood 
+Markup : 
+         -[ ] Access Database Understood 
          -[ ] SQL Conversion Design Complete
  
          -[ ] Placeholder
