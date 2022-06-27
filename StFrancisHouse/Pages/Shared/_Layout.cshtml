@@ -7,36 +7,40 @@
     <link rel="stylesheet" href="~/css/output.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="bg-white-100">
-            <div class="container">
-                <a class="bg-slate-600 text-white" asp-area="" asp-page="/Index">StFrancisHouse</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
+    @* NavBar! *@
+    <div class="navbar bg-base-100">
+        <div class="flex-1">
+            <a class="btn btn-ghost normal-case text-xl">StFrancisHouse</a>
+        </div>
+        <div class="flex-none">
+            <ul class="menu menu-horizontal p-0">
+                <li><a>Item 1</a></li>
+                <li tabindex="0">
+                    <a>Parent
+                        <svg class="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+                    </a>
+                    <ul class="p-2 bg-base-100">
+                        <li><a>Submenu 1</a></li>
+                        <li><a>Submenu 2</a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
+                </li>
+                <li><a>Item 3</a></li>
+            </ul>
+        </div>
+    </div>
+    @* End Navbar! *@
+
+
+    <div class="min-w-screen">
         <main role="main" class="p-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - StFrancisHouse - <a asp-area="" asp-page="/Privacy">Privacy</a>
+
+    <footer class="footer footer-center p-4 bg-base-300 text-base-content mx-auto">
+        <div>
+            <p>Copyright © 2022 - All right reserved by StFrancisHouse</p>
         </div>
     </footer>
 
