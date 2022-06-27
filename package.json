@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
   "devDependencies": {
-    "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9.8.6",
     "postcss": "^7.0.35",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "tailwindcss": "^2.2.17"
   },
   "scripts": {
-    "css:build": "npx tailwind build ./wwwroot/css/site.css -o ./wwwroot/css/output.css"
+    "css:build": "npx tailwind build ./StFrancisHouse/wwwroot/css/site.css -o ./StFrancisHouse/wwwroot/css/output.css"
   },
   "repository": {
     "type": "git",

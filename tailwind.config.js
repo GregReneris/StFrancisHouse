@@ -3,10 +3,10 @@ module.exports = {
   purge: {
     enabled: true,
     content: [
-      './Pages/**/*.cshtml',
-      './Views/**/*.cshtml'],
+      './StFrancisHouse/Pages/**/*.cshtml',
+      './StFrancisHouse/Views/**/*.cshtml'],
   },
-  darkMode: false,
+  darkMode: 'media',
   theme: {
     extend: {},
   },
