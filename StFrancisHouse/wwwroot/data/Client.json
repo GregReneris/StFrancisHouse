@@ -1,0 +1,80 @@
+[
+    {
+        "ClientID": 123,
+        "Family": {
+            "ID": 0,
+            "NumKids": 4,
+            "BoyAge": [8, 9],
+            "GirlAge": [11, 17]
+        },
+        "LastName": "Smith",
+        "FirstName": "John",
+        "MiddleInitial": "D",
+        "Birthday": "1/1/1970 0:00:00",
+        "ZipCode": 98101,
+        "Race": "Multiracial, non-Hispanic",
+        "Gender": "Male",
+        "Visits": [
+            {
+                "ID": 1,
+                "Date": "7/5/2022 0:00:00",
+                "Assistance": {
+                    "ItemsRequested": [
+                        {"ID": "ChildrenClothes",
+                        "Quantity": 15},
+                        {"ID": "MenClothes",
+                        "Quantity": 15},
+                        {"ID": "ShampooConditioner",
+                        "Quantity": 1}
+                    ],
+                    "RequiresApproval": false,
+                    "Other": "comment"
+                },
+                "Receipt": {
+                    "ItemsReceived": [
+                        {"ID": "ChildrenClothes",
+                        "Quantity": 13},
+                        {"ID": "MenClothes",
+                        "Quantity": 10},
+                        {"ID": "ShampooConditioner",
+                        "Quantity": 0}
+                    ],
+                    "ReceivedApproval": false,
+                    "Other": "comment"
+                },
+                "LastBackpack": "6/3/2022 0:00:00",
+                "LastSleepingBag": "6/3/2022 0:00:00"
+            },
+            {
+                "ID": 0,
+                "Date": "6/3/2022 0:00:00",
+                "Assistance": {
+                    "ItemsRequested": [
+                        {"ID": "ChildrenClothes",
+                        "Quantity": 15},
+                        {"ID": "Backpack",
+                        "Quantity": 1},
+                        {"ID": "SleepingBag",
+                        "Quantity": 1} 
+                    ],
+                    "RequiresApproval": false,
+                    "Other": "comment"
+                },
+                "Receipt": {
+                    "ItemsReceived": [
+                        {"ID": "ChildrenClothes",
+                        "Quantity": 15},
+                        {"ID": "Backpack",
+                        "Quantity": 1},
+                        {"ID": "SleepingBag",
+                        "Quantity": 1}
+                    ],
+                    "RequiresApproval": false,
+                    "Other": "comment"
+                },
+                "LastBackpack": "6/3/2022 0:00:00",
+                "LastSleepingBag": "6/3/2022 0:00:00"
+            }
+        ]
+    }
+]
