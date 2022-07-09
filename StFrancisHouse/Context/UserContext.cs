@@ -15,6 +15,7 @@ namespace StFrancisHouse.Models
         {
         }
 
-        public DbSet<User> UserItems { get; set; } = null!;
+        //commented the below lone of code since it was not letting the rest of the code to compile
+        //public DbSet<User> UserItems { get; set; } = null!;
     }
 }
