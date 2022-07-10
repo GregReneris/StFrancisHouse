@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#logo-navbar {
+    width: 10%;
+    max-width: 130px;
+    left: 5px;
+    top: 5px;
+    content: url(../data/images/logo.png);
+}
