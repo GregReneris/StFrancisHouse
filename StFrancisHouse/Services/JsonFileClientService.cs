@@ -17,7 +17,7 @@ namespace StFrancisHouse.Services
         /// Initiate the web hosting environment for the application to use
         public JsonFileClientService(IWebHostEnvironment webHostEnvironment)
         {
-            WebHostEnvironment = webHostEnvironment;
+            //WebHostEnvironment = webHostEnvironment;
         }
 
     }
