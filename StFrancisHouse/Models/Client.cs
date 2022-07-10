@@ -18,12 +18,7 @@ namespace StFrancisHouse.Models
 
         public string Race { get; set; }
 
-        public string Gender 
-
-
-
-
-
+        public string Gender { get; set; }
 
     }
 }

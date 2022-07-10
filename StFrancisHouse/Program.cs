@@ -1,7 +1,12 @@
+using MySql.Data.EntityFrameworkCore;
+using StFrancisHouse.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContext<UserContext>();
 
 var app = builder.Build();
 
@@ -21,5 +26,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+
+// Mapping API routes + responses
+app.MapGet("/helloworld", () => "Hello World!");
 
 app.Run();
