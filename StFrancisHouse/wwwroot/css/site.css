@@ -24,3 +24,32 @@ body {
     top: 5px;
     content: url(../data/images/logo.png);
 }
+
+.square-div {
+    box-sizing: border-box;
+    width: 70%;
+    height: 75vh;
+    border: 1px solid #E5E5E5;
+    float: left;
+}
+
+.button-div {
+    width: 30%;
+    float: left;
+}
+
+.btn {
+    align-items: center;
+    width: 44%;
+    height: 130px;
+    background: #007FFF;
+    border-radius: 30px;
+    float: left;
+    margin: 10px 3%;
+    color: white;
+    font-size: x-large;
+}
+
+.back-btn {
+    background: rgba(249, 49, 5, 0.37);
+}
