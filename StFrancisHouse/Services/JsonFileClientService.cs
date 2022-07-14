@@ -5,6 +5,8 @@ using System.Text.Json;
 using System.Net.Http;
 using System.Net;
 using System;
+using StFrancisHouse.Models;
+using Microsoft.AspNetCore.Hosting;
 
 namespace StFrancisHouse.Services
 
@@ -17,8 +19,14 @@ namespace StFrancisHouse.Services
         /// Initiate the web hosting environment for the application to use
         public JsonFileClientService(IWebHostEnvironment webHostEnvironment)
         {
-            //WebHostEnvironment = webHostEnvironment;
+            WebHostEnvironment = webHostEnvironment;
         }
 
+        /// Call the IWebHostEnvironment object
+        public IWebHostEnvironment WebHostEnvironment { get; }
+
+
     }
+
+   
 }
