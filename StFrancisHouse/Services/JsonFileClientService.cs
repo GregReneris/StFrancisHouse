@@ -29,9 +29,24 @@ namespace StFrancisHouse.Services
         private string JsonFileClientName => Path.Combine(
             WebHostEnvironment.WebRootPath, "data", "Client.json");
 
+        /// Get the json text and convert it to list
+        public IEnumerable<Client> GetClient()
+        {
+            using var jsonFileReader = File.OpenText(JsonFileClientName);
+            var clientlist = JsonSerializer.Deserialize<Client[]>
+                (jsonFileReader.ReadToEnd(), new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                });
+
+            // Handle nulliable
+            if (clientlist is null) {
+                clientlist = Array.Empty<Client>();
+            }
+
+            return clientlist;
+        }
 
 
     }
-
-   
 }
