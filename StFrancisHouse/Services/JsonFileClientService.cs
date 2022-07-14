@@ -25,6 +25,11 @@ namespace StFrancisHouse.Services
         /// Call the IWebHostEnvironment object
         public IWebHostEnvironment WebHostEnvironment { get; }
 
+        /// Get the file path and filename of Client data for loading
+        private string JsonFileClientName => Path.Combine(
+            WebHostEnvironment.WebRootPath, "data", "Client.json");
+
+
 
     }
 
