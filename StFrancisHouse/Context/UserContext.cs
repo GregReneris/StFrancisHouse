@@ -47,7 +47,7 @@ namespace StFrancisHouse.Models
                             LastName = reader["LastName"].ToString(),
                             MiddleInitial = reader["MiddleInitial"].ToString(),
                             Birthday = reader["Birthday"].ToString(),
-                            ZipCode = Convert.ToInt32(reader[ZipCode]),
+                            ZipCode = Convert.ToInt32(reader["ZipCode"]),
                             Race = reader["Race"].ToString(),
                             Gender = reader["Gender"].ToString()
                         });
