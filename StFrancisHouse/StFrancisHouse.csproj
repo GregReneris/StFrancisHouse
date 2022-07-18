@@ -16,7 +16,6 @@
     <None Remove="Pages\Product\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Pages\Product\" />
   </ItemGroup>
 </Project>
