@@ -5,8 +5,10 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-function populateTable() {
-    console.log("Populateing table");
+function populateTable2() {
+    var x = PageMethods.foo();
+
+    console.log("Populating example table");
     //alert("ALERT");
 
     var html = '';
@@ -35,10 +37,28 @@ function populateTable() {
 
     $("#table9000 tbody").html(html);
 
-
 } 
 
+function populateTable()
+{
+    $.ajax({
+        type: "POST",
+        url: '/Home/AjaxMethod',
+        method: 'POST',
+        data: {name: "Greg"},
+        contentType: "application/JSON; charset=utf-8",
+        dataType: "json",
+        success: function(r) { alert("success"); },
+        complete: function(r) { alert("complete"); },
+        failure: function(r, status, error) { alert("failure"); }
+    });
+}
 
+
+function example(){
+    console.log("Populating table with respone data.");
+
+}
 
 
 
@@ -49,13 +69,26 @@ function populateTable() {
         <table id = 'table9000' border="1"> <tbody></tbody> </table>
 
     </div>
+    
     <div class="button-div">
-        <button class="btn back-btn">Back</button>
-        <button class="btn">Enter Items</button>
-        <button class="btn">Item Lookup</button>
-        <button class="btn">Print Receipts</button>
-        <button class="btn" onclick="populateTable()">Member Lookup</button>
-        <button class="btn">Sign Out</button>
+        
+            <button class="btn back-btn">Back</button>
+            <button class="btn">Enter Items</button>
+            <button class="btn">Item Lookup</button>
+            <button class="btn">Print Receipts</button>
+            <button class="btn" onclick="populateTable()">Member Lookup</button>
+    
+            
+        <!--
+        <form method="post" asp-page-handler="FuncFoo">
+            <button class="btn" id="foo" runat="server">Member Lookup2</button>
+        </form>
+        --> 
+
+
+        
+            <button class="btn">Sign Out</button>
+            <asp:Button id="testbutton" class="btn" Text="TestButton1" onclick=""></asp:Button>
     </div>
 </body>
 

@@ -18,6 +18,29 @@ namespace StFrancisHouse.Pages
 
         }
 
+        public string foo()
+        {
+            return ("got here");
+        }
+
+        public void OnPostFuncFoo(object sender, EventArgs e)
+        {
+            Console.WriteLine("WE GOT HERE TO THIS funcfoo");
+
+        }
+
+        protected void populateTable(object sender, EventArgs e)
+        {
+            Console.WriteLine("m_click is here");   
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Console.WriteLine("m_click is here");
+            //foo.ServerClick += new EventHandler(populateTable);
+
+        }
+
     }
 }
 
