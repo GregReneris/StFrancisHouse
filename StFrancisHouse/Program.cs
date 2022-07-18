@@ -47,4 +47,9 @@ app.UseEndpoints(endpoints =>
             // Mapping API routes + responses
 app.MapGet("/helloworld",  () => "Hello World!"    );
 
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
+
 app.Run();
