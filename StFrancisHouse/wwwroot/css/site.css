@@ -53,3 +53,7 @@ body {
 .back-btn {
     background: rgba(249, 49, 5, 0.37);
 }
+
+table, th, td{
+    border:1px solid blue; 
+}
