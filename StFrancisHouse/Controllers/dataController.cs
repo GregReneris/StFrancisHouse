@@ -7,7 +7,7 @@ namespace StFrancisHouse
     {
         
         //currently calls getAllClients
-        public IActionResult Index()
+        public IActionResult GetAllClients()
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
