@@ -3,20 +3,68 @@
 @{
 }
 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+function populateTable() {
+    console.log("Populateing table");
+    //alert("ALERT");
+
+    var html = '';
+    var cols = 4;
+   
+    html += '<tr>'
+    for (var j = 0; j < cols; j++) 
+    {
+        html += '<th> H' + j + '</th>';
+    }
+
+    html += '</tr>';
+    
+
+
+
+    for (var i = 0; i < 5; i++)
+    {
+        html += '<tr>';
+        for (var j = 0; j < cols; j++) 
+        {
+            html += '<td>' + j + '</td>';
+        }
+        html += '</tr>';
+    }
+
+    $("#table9000 tbody").html(html);
+
+
+} 
+
+
+
+
+
+</script>
+
 <body>
     <div class="square-div">
+        <table id = 'table9000' border="1"> <tbody></tbody> </table>
+
     </div>
     <div class="button-div">
         <button class="btn back-btn">Back</button>
         <button class="btn">Enter Items</button>
         <button class="btn">Item Lookup</button>
         <button class="btn">Print Receipts</button>
-        <button class="btn">Member Lookup</button>
+        <button class="btn" onclick="populateTable()">Member Lookup</button>
         <button class="btn">Sign Out</button>
     </div>
 </body>
+
+
+
 
 @*<div class="text-center">
     <button>Print Recipt</button>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>*@
+
+
