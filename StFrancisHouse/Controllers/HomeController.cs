@@ -32,6 +32,17 @@ namespace StFrancisHouse.Controllers
             return View(context.getAllClients());
         }
 
+        //perhaps a different thing than view than the Ajax method above? 
+
+        public List<Client> get5Clients()
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            List<Client> clients = context.getAllClients();
+
+            return clients; 
+        }
+
 
         // POST: HomeController/Create
         [HttpPost]
