@@ -61,21 +61,21 @@ namespace StFrancisHouse.Models
             return clients; //returns the client list.
         }
 
-        public List<Client> getClientByInfo()
+        public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
         {
             List<Client> clients = new List<Client>();
             int numEntry = 50; //change this to user chosen value in production later.  
 
-            string lastname = "Fort";
-            string firstname = "";
-            string birthdate = "1935-12-23";
+            //string lastname = "Fort";
+            //string firstname = "";
+            //string birthdate = "1935-12-23";
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
 
                 //adjusted formatting for easier cmd string.
-                string cmd1 = "'" +lastname+ "'";
+                string cmd1 = "'" +lastName+ "'";
                 string cmd2 = "'" +birthdate+ "'";
                 
                 MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + cmd1 + " AND BIRTHDAY = " + cmd2 , conn);

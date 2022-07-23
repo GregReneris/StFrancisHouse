@@ -51,7 +51,7 @@ namespace StFrancisHouse.Controllers
             //object of some sort.
 
             //pass in object of some sort.
-            List<Client> clients = context.getClientByInfo();
+            List<Client> clients = context.getClientByInfo(firstName, lastName, birthdate);
 
             return clients;
 
