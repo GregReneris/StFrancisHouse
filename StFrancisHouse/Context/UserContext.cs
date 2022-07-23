@@ -60,7 +60,58 @@ namespace StFrancisHouse.Models
 
             return clients; //returns the client list.
         }
-       
+
+        public List<Client> getClientByInfo()
+        {
+            List<Client> clients = new List<Client>();
+            int numEntry = 50; //change this to user chosen value in production later.  
+
+            string lastname = "Fort";
+            string firstname = "";
+            string birthdate = "1935-12-23";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                //adjusted formatting for easier cmd string.
+                string cmd1 = "'" +lastname+ "'";
+                string cmd2 = "'" +birthdate+ "'";
+                
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + cmd1 + " AND BIRTHDAY = " + cmd2 , conn);
+
+                
+                //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
+
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    //adding information MUST reflect the exact table id inside the [" "]
+                    //whereas the assignments must match the model data. 
+                    while (reader.Read())
+                    {
+                        clients.Add(new Client()
+                        {
+                            ClientID = Convert.ToInt32(reader["ClientID"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            MiddleInitial = reader["MI"].ToString(),
+                            Birthday = reader["Birthday"].ToString(),
+                            ZipCode = Convert.ToInt32(reader["Zip Code"]),
+                            Race = reader["Race"].ToString(),
+                            Gender = reader["Gender"].ToString()
+                        });
+                    }
+                }
+
+            }
+
+            return clients; //returns the client list.
+        }
+
+
+
+
         //Greg: Not sure if the below needs to be commented out since conectionstring above has been used. 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -43,6 +43,22 @@ namespace StFrancisHouse.Controllers
             return clients; 
         }
 
+
+        public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            //object of some sort.
+
+            //pass in object of some sort.
+            List<Client> clients = context.getClientByInfo();
+
+            return clients;
+
+            //SELECT* FROM heroku_897e4d581d637b3.client WHERE LASTNAME = "FORT" AND BIRTHDAY = "1935-12-23";
+        }
+
+
         //public JsonResult get5ClientsJSON()
         //{
         //    UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
