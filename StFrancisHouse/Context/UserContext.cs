@@ -66,6 +66,11 @@ namespace StFrancisHouse.Models
             List<Client> clients = new List<Client>();
             int numEntry = 50; //change this to user chosen value in production later.  
 
+            //adjusted formatting for easier cmd string.
+            string insertLastName = "'" + lastName + "'";
+            string insertBirthdate = "'" + birthdate + "'";
+
+            //example of required formatting.
             //string lastname = "Fort";
             //string firstname = "";
             //string birthdate = "1935-12-23";
@@ -74,11 +79,9 @@ namespace StFrancisHouse.Models
             {
                 conn.Open();
 
-                //adjusted formatting for easier cmd string.
-                string cmd1 = "'" +lastName+ "'";
-                string cmd2 = "'" +birthdate+ "'";
+
                 
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + cmd1 + " AND BIRTHDAY = " + cmd2 , conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
 
                 
                 //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
@@ -105,8 +108,74 @@ namespace StFrancisHouse.Models
                 }
 
             }
-
             return clients; //returns the client list.
+        }
+
+
+        //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        public void createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        {
+
+            List<Client> clients = new List<Client>();
+            int numEntry = 2; //change this to user chosen value in production later.  
+            
+            string insertFirstName = "'" + firstName + "'";
+            string insertLastName = "'" + lastName + "'";
+            string insertMiddleInitial = "'" + middleInitial + "'"; 
+            string insertSuffix = "'" + suffix + "'";
+            string insertBirthdate = "'" + birthdate + "'";
+            string insertRace = "'" + race + "'";
+            string insertGender = "'" + gender + "'";
+            string insertZip = "" + ZipCode + "";
+            
+
+            string sqlFormattedValueString = insertFirstName +", " + insertLastName + ", " + insertMiddleInitial + ", " + insertSuffix +", " + insertBirthdate + ", " +insertZip + ", " +
+                insertRace + ", " + insertGender;
+
+            Console.WriteLine(sqlFormattedValueString);
+            //define client variables.
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                //Create new client
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
+                Console.WriteLine(cmd.ToString());
+
+                int result = cmd.ExecuteNonQuery();
+                
+                //INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES("Ken", "Hamilton", "B", "MRS", '1935-12-23', 98344, "N/A", "M");
+
+                //Retrieve this client
+                //MySqlCommand cmd2 = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
+
+
+                //using (var reader = cmd2.ExecuteReader())
+                //{
+                //    //adding information MUST reflect the exact table id inside the [" "]
+                //    //whereas the assignments must match the model data. 
+                //    while (reader.Read())
+                //    {
+                //        clients.Add(new Client()
+                //        {
+                //            ClientID = Convert.ToInt32(reader["ClientID"]),
+                //            FirstName = reader["FirstName"].ToString(),
+                //            LastName = reader["LastName"].ToString(),
+                //            MiddleInitial = reader["MI"].ToString(),
+                //            Birthday = reader["Birthday"].ToString(),
+                //            ZipCode = Convert.ToInt32(reader["Zip Code"]),
+                //            Race = reader["Race"].ToString(),
+                //            Gender = reader["Gender"].ToString()
+                //        });
+                //    }
+                //}
+
+            }
+
+            Console.WriteLine("End of method.");
+            //  return clients;
+
         }
 
 
