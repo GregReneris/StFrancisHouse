@@ -59,6 +59,27 @@ namespace StFrancisHouse.Controllers
         }
 
 
+        /**
+         * List<Client>
+         * @returns a list of the client added to the DB.
+         */
+        public void postClientbyInfo(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        {
+
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            //object of some sort.
+
+            //pass in object of some sort.
+            //List<Client> clients = context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
+            context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
+
+            //return clients;
+
+
+        }
+
+
         //public JsonResult get5ClientsJSON()
         //{
         //    UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
