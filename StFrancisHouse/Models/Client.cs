@@ -21,5 +21,9 @@ namespace StFrancisHouse.Models
 
         public string Gender { get; set; }
 
+        public List<Visit> Visits { get; set; }
+
+
+
     }
 }
