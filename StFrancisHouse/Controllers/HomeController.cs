@@ -23,7 +23,7 @@ namespace StFrancisHouse.Controllers
             return View();
         }
 
-        
+
         public IActionResult AjaxMethod(string name)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
@@ -38,8 +38,8 @@ namespace StFrancisHouse.Controllers
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
             List<Client> clients = context.getAllClients();
-            
-            return clients; 
+
+            return clients;
         }
 
 
@@ -77,7 +77,7 @@ namespace StFrancisHouse.Controllers
 
         public List<Client> getClientVisits(int clientID)
         {
-            
+
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
 
@@ -87,12 +87,24 @@ namespace StFrancisHouse.Controllers
             return clients;
         }
 
+        public Visit getVisitByID(int visitID)
+        {            
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            Visit Visit = context.getVisitByID(visitID);
+
+            return Visit;
+        }
+
+
+
         public void createClientVisitByID(int clientID)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
             context.createClientVisitByID(clientID);
         }
+
 
 
 
