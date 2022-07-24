@@ -87,6 +87,12 @@ namespace StFrancisHouse.Controllers
             return clients;
         }
 
+        public void createClientVisitByID(int clientID)
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            context.createClientVisitByID(clientID);
+        }
 
 
 
