@@ -207,6 +207,9 @@ namespace StFrancisHouse.Models
 
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
                 MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
+                
+                //string timeHolderBackpack;
+                //DateTime timeHolderSleepingBag;
 
                 using (var reader = cmd2.ExecuteReader())
                 {
@@ -214,12 +217,17 @@ namespace StFrancisHouse.Models
                     //whereas the assignments must match the model data. 
                     while (reader.Read())
                     {
+                        //checkForNull((reader["LastBackPack"]));
+                        //timeHolderBackpack = ConvertFromDBVal<string>(reader["LastBackPack"]);
+
+
                         clientsVisits.Add(new Visit()
                         {
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
                             VisitDate = (DateTime)reader["Date"],
                             //LastBackpack = (DateTime)reader["LastBackpack"],
+                            //LastBackpack = (DateTime)timeHolderBackpack
                             //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
                             //Lasts can be null, so need to find a way around that exception.
                         });
@@ -234,6 +242,43 @@ namespace StFrancisHouse.Models
 
         }
 
+
+
+
+
+        /*
+         * 
+         * Helper function section!
+         * 
+         */
+        public object checkForNull(object input)
+        {
+            DateTime fixedDateTime = DateTime.MinValue;
+            //object example = new DBNull();
+
+            if(input == null)
+            {
+                input = fixedDateTime.ToString();
+            }
+
+            return input;
+        }
+
+        public static T ConvertFromDBVal<T>(object obj)
+        {
+            if (obj == null || obj == DBNull.Value)
+            {
+                //if(obj.GetType == DBNull.Value)
+                //{
+                //      return DateTime.minValue or something.
+                //}
+                return default(T); // returns the default value for the type
+            }
+            else
+            {
+                return (T)obj;
+            }
+        }
 
 
 
