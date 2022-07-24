@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using StFrancisHouse.Models;
 
 namespace StFrancisHouse.Controllers
@@ -68,16 +67,27 @@ namespace StFrancisHouse.Controllers
 
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            //object of some sort.
-
             //pass in object of some sort.
             //List<Client> clients = context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
             context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
 
             //return clients;
 
-
         }
+
+        public List<Client> getClientVisits(string firstName, string lastName, string birthdate)
+        {
+            
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+
+
+            List<Client> clients = context.getClientVisits(firstName, lastName, birthdate);
+
+            return clients;
+        }
+
+
 
 
         //public JsonResult get5ClientsJSON()
