@@ -151,30 +151,86 @@ namespace StFrancisHouse.Models
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
 
 
-                //using (var reader = cmd2.ExecuteReader())
-                //{
-                //    //adding information MUST reflect the exact table id inside the [" "]
-                //    //whereas the assignments must match the model data. 
-                //    while (reader.Read())
-                //    {
-                //        clients.Add(new Client()
-                //        {
-                //            ClientID = Convert.ToInt32(reader["ClientID"]),
-                //            FirstName = reader["FirstName"].ToString(),
-                //            LastName = reader["LastName"].ToString(),
-                //            MiddleInitial = reader["MI"].ToString(),
-                //            Birthday = reader["Birthday"].ToString(),
-                //            ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                //            Race = reader["Race"].ToString(),
-                //            Gender = reader["Gender"].ToString()
-                //        });
-                //    }
-                //}
-
             }
 
             Console.WriteLine("End of method.");
             //  return clients;
+
+        }
+
+
+        public List<Client> getClientVisits(string firstName, string lastName, string birthdate)
+        {
+         
+            List<Client> clients = new List<Client>();
+            List<Visit> clientsVisits = new List<Visit>();
+
+            //adjusted formatting for easier cmd string.
+            string insertLastName = "'" + lastName + "'";
+            string insertBirthdate = "'" + birthdate + "'";
+
+            //example of required formatting.
+            //string lastname = "Fort";
+            //string firstname = "";
+            //string birthdate = "1935-12-23";
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    //adding information MUST reflect the exact table id inside the [" "]
+                    //whereas the assignments must match the model data. 
+                    while (reader.Read())
+                    {
+                        clients.Add(new Client()
+                        {
+                            ClientID = Convert.ToInt32(reader["ClientID"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            LastName = reader["LastName"].ToString(),
+                            MiddleInitial = reader["MI"].ToString(),
+                            Birthday = reader["Birthday"].ToString(),
+                            ZipCode = Convert.ToInt32(reader["Zip Code"]),
+                            Race = reader["Race"].ToString(),
+                            Gender = reader["Gender"].ToString()
+                        });
+                    }
+                }
+
+
+                int clientID = clients[0].ClientID;
+
+                //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
+
+                using (var reader = cmd2.ExecuteReader())
+                {
+                    //adding information MUST reflect the exact table id inside the [" "]
+                    //whereas the assignments must match the model data. 
+                    while (reader.Read())
+                    {
+                        clientsVisits.Add(new Visit()
+                        {
+                            VisitID = Convert.ToInt32(reader["VisitID"]),
+                            ClientID = Convert.ToInt32(reader["ClientID"]),
+                            VisitDate = (DateTime)reader["Date"],
+                            //LastBackpack = (DateTime)reader["LastBackpack"],
+                            //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
+                            //Lasts can be null, so need to find a way around that exception.
+                        });
+                    }
+                }
+
+                clients[0].Visits = clientsVisits;
+
+            }
+
+            return clients; //returns the client list.
 
         }
 
