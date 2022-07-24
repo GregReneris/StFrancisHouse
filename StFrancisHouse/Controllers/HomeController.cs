@@ -75,14 +75,14 @@ namespace StFrancisHouse.Controllers
 
         }
 
-        public List<Client> getClientVisits(string firstName, string lastName, string birthdate)
+        public List<Client> getClientVisits(int clientID)
         {
             
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
 
 
-            List<Client> clients = context.getClientVisits(firstName, lastName, birthdate);
+            List<Client> clients = context.getClientVisits(clientID);
 
             return clients;
         }

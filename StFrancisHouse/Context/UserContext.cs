@@ -159,28 +159,28 @@ namespace StFrancisHouse.Models
         }
 
 
-        public List<Client> getClientVisits(string firstName, string lastName, string birthdate)
+        public List<Client> getClientVisits(int clientID)
         {
+            List<Visit> clientsVisits = new List<Visit>();
          
             List<Client> clients = new List<Client>();
-            List<Visit> clientsVisits = new List<Visit>();
 
             //adjusted formatting for easier cmd string.
-            string insertLastName = "'" + lastName + "'";
-            string insertBirthdate = "'" + birthdate + "'";
+            //string insertLastName = "'" + lastName + "'";
+            //string insertBirthdate = "'" + birthdate + "'";
 
             //example of required formatting.
             //string lastname = "Fort";
             //string firstname = "";
             //string birthdate = "1935-12-23";
 
+
+
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
 
-
-
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE clientID = " + clientID, conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -202,8 +202,6 @@ namespace StFrancisHouse.Models
                     }
                 }
 
-
-                int clientID = clients[0].ClientID;
 
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
                 MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
