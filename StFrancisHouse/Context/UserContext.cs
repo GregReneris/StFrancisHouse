@@ -243,6 +243,29 @@ namespace StFrancisHouse.Models
         }
 
 
+        /**
+         * 
+         * Requires client ID to add a visit to.
+         */
+        public void createClientVisitByID(int clientID)
+        {
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO VISIT (ClientID, Date) values (" + clientID +", NOW()) " , conn);
+
+                int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
+
+                //consider returning the visit or at least the visitID
+
+
+                Console.WriteLine(); //WriteLine for break point usage
+            }
+        }
+
+
 
 
 
