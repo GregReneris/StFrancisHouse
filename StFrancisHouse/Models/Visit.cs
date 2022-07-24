@@ -11,13 +11,15 @@ namespace StFrancisHouse.Models
     {
         public int VisitID { get; set; }
         
-        public string VisitDate { get; set; }
+        public int ClientID { get; set; }
 
-        public string LastBackpage { get; set; }
+        public DateTime VisitDate { get; set; }
 
-        public string LastSleepingBag { get; set; }
+        public DateTime LastBackpack { get; set; }
 
-        public string Requests { get; set; }
+        public DateTime LastSleepingBag { get; set; }
+
+        public DateTime Requests { get; set; }
 
 
     }
