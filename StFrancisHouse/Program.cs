@@ -40,7 +40,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 //not sure if Cors needs to go here or elsewhere.
-app.UseCors();
+//app.UseCors();
 
 app.UseRouting();
 
