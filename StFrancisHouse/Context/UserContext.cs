@@ -297,6 +297,39 @@ namespace StFrancisHouse.Models
         }
 
 
+     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
+        {
+            Visit clientVisit = new Visit();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM VISIT WHERE visitID =" + visitID, conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    //adding information MUST reflect the exact table id inside the [" "]
+                    //whereas the assignments must match the model data. 
+                    while (reader.Read())
+                    {
+
+                        clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
+                        clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
+                        clientVisit.VisitDate = (DateTime)reader["Date"];
+                        //LastBackpack = (DateTime)reader["LastBackpack"],
+                        //LastBackpack = (DateTime)timeHolderBackpack
+                        //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
+                        //Lasts can be null, so need to find a way around that exception.
+
+                    }
+                }
+            }
+
+            return clientVisit;
+
+        }
+
 
 
         /*
