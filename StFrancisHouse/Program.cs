@@ -15,10 +15,20 @@ builder.Services.AddMvc();
 
 
 //Adding cors to override defaults.
-builder.Services.AddCors(c =>
+//builder.Services.AddCors(c =>
+//{
+//    //should allow any website to use ours.
+//    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+//});
+
+builder.Services.AddCors(opt =>
 {
-    //should allow any website to use ours.
-    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());
+    opt.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 builder.Services.Add(new ServiceDescriptor(typeof(UserContext), new UserContext(builder.Configuration.GetConnectionString("DefaultConnection"))));
@@ -40,7 +50,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 //not sure if Cors needs to go here or elsewhere.
-//app.UseCors();
+app.UseCors();
 
 app.UseRouting();
 
