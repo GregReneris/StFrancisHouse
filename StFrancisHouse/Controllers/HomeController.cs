@@ -109,10 +109,10 @@ namespace StFrancisHouse.Controllers
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            context.checkout(visitID, mens, womens, kids, backpack, sleepingbag, request);
+            Visit Visit = context.checkout(visitID, mens, womens, kids, backpack, sleepingbag, request);
 
             //TODO: return visit.
-            return null;
+            return Visit;
         }
 
 

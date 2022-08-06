@@ -306,6 +306,9 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 MySqlCommand cmd = new MySqlCommand("SELECT * FROM VISIT WHERE visitID =" + visitID, conn);
+                
+                //MySqlCommand cmd = new MySqlCommand("UPDATE * FROM VISIT WHERE visitID =" + visitID, conn);
+
 
                 using (var reader = cmd.ExecuteReader())
                 {
