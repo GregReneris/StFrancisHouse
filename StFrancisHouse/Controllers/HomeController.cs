@@ -43,6 +43,26 @@ namespace StFrancisHouse.Controllers
         }
 
 
+        /*
+        * When you have all firstname parameter for getClientByInfo.
+        * 
+        */
+        public List<Client> getClientByInfo(string firstName)
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            //object of some sort.
+
+            //pass in object of some sort.
+            List<Client> clients = context.getClientByInfo(firstName);
+
+            return clients;
+        }
+
+        /*
+         * When you have all 3 parameters for getClientByInfo.
+         * Best search results
+         */
         public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
@@ -53,8 +73,6 @@ namespace StFrancisHouse.Controllers
             List<Client> clients = context.getClientByInfo(firstName, lastName, birthdate);
 
             return clients;
-
-            //SELECT* FROM heroku_897e4d581d637b3.client WHERE LASTNAME = "FORT" AND BIRTHDAY = "1935-12-23";
         }
 
 
