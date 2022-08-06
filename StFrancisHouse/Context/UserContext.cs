@@ -297,20 +297,42 @@ namespace StFrancisHouse.Models
         }
 
 
-     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
+     public Visit checkout(string visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
         {
             Visit clientVisit = new Visit();
+
+            int insertMens = mens;
+            int insertWomens = womens;
+            int insertKids = kids;
+            string backpackInsert = "CurrentDate()";
+            string sleepInsert = "CurrentDate()";
+            string requestInsert = "'" + request + "'";
+
+
+            if (backpack == false)
+            {
+                backpackInsert = "1111-11-11";
+            }
+            if(sleepingbag == false)
+            {
+                sleepInsert = "1111-11-11";
+            }
+
+
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM VISIT WHERE visitID =" + visitID, conn);
                 
-                //MySqlCommand cmd = new MySqlCommand("UPDATE * FROM VISIT WHERE visitID =" + visitID, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE VISIT SET Mens = '"+ insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids +"', LastBackpack = " +backpackInsert+ ", LastSleepingBag = "+ sleepInsert +", Request = "+ requestInsert +" WHERE visitID =" + visitID, conn);
+
+                cmd.ExecuteNonQuery();
+
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM VISIT WHERE visitID =" + visitID, conn);
 
 
-                using (var reader = cmd.ExecuteReader())
+                using (var reader = cmd2.ExecuteReader())
                 {
                     //adding information MUST reflect the exact table id inside the [" "]
                     //whereas the assignments must match the model data. 
