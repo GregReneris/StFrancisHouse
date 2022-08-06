@@ -26,15 +26,18 @@ namespace StFrancisHouse.Models
         //example method to get all Clients from Client Table on DB.
         //Note: May be out of date to modified/newest DB Schema based on sqlver1.0, no updates. 
         //Note: possible null assignments for fields. 
+        //Returns ALL clients.
         public List<Client> getAllClients()
         {
             List<Client> clients = new List<Client>();
-            int numEntry = 100; //change this to user chosen value in production later.  
+            //int numEntry = 10000; //change this to user chosen value in production later.  
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE ClientID < " + numEntry , conn);
+                //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE ClientID < " + numEntry , conn);
+                
+                MySqlCommand cmd = new MySqlCommand("SELECT * from Client", conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
