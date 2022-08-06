@@ -351,8 +351,8 @@ namespace StFrancisHouse.Models
             int insertMens = mens;
             int insertWomens = womens;
             int insertKids = kids;
-            string backpackInsert = "CurrentDate()";
-            string sleepInsert = "CurrentDate()";
+            string backpackInsert = "Current_Date()";
+            string sleepInsert = "Current_Date()";
             string requestInsert = "'" + request + "'";
 
 

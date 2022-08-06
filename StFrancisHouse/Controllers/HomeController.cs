@@ -131,7 +131,6 @@ namespace StFrancisHouse.Controllers
 
             Visit Visit = context.checkout(visitID, mens, womens, kids, backpack, sleepingbag, request);
 
-            //TODO: return visit.
             return Visit;
         }
 
