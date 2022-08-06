@@ -297,7 +297,7 @@ namespace StFrancisHouse.Models
         }
 
 
-     public Visit checkout(string visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
+     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
         {
             Visit clientVisit = new Visit();
 
