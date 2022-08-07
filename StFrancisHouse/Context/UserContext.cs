@@ -9,6 +9,9 @@ namespace StFrancisHouse.Models
     public class UserContext : DbContext
     {
 
+
+        //TODO: Add SQL encoder function or param parsing to ensure security and SQL consistency.
+
         //Adding in mySQL connection string to the online database.
         public string ConnectionString { get; set; }
 
@@ -75,8 +78,8 @@ namespace StFrancisHouse.Models
             int numEntry = 50; //change this to user chosen value in production later.  
 
             //adjusted formatting for easier cmd string.
-            string insertLastName = "'" + lastName + "'";
-            string insertBirthdate = "'" + birthdate + "'";
+            //string insertLastName = "'" + lastName + "'";
+            //string insertBirthdate = "'" + birthdate + "'";
 
             //example of required formatting.
             //string lastname = "Fort";
@@ -88,8 +91,29 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
 
-                
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
+                string sqlcmd = "SELECT * from Client";
+                string seperator = " WHERE ";
+
+                if (firstName.Length > 0)
+                {
+                    sqlcmd += seperator + "FirstName = '" + firstName + "' ";
+                    seperator = " AND ";
+                }
+
+                if (lastName.Length > 0)
+                {
+                    sqlcmd += seperator + "LastName = '" + lastName + "' ";
+                    seperator = " AND ";
+                }
+
+                if (birthdate.Length > 0)
+                {
+                    sqlcmd += seperator + "BIRTHDAY = '" + birthdate + "' ";
+                    seperator = " AND ";
+                }
+
+
+                MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
                 
                 //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
@@ -284,8 +308,12 @@ namespace StFrancisHouse.Models
                         {
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
+                            Mens =
+                            Womens = 
+                            Kids =  
                             VisitDate = (DateTime)reader["Date"],
                             LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
+                            LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
                             Request = CheckNull<String>(reader["Request"].ToString())
 
 
