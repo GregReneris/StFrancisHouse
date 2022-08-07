@@ -57,7 +57,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 //Adding in this authentication because postman was breaking. 
-//app.UseAuthentication();
+app.UseAuthentication();
 
 //app.MapRazorPages();
 

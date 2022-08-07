@@ -21,6 +21,10 @@ namespace StFrancisHouse.Models
 
         public string Gender { get; set; }
 
+        public string ClientNote { get; set; }
+
+        public bool Banned { get; set; }
+
         public List<Visit> Visits { get; set; }
 
 

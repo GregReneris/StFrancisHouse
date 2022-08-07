@@ -19,7 +19,7 @@ namespace StFrancisHouse.Models
 
         public DateTime LastSleepingBag { get; set; }
 
-        public DateTime Requests { get; set; }
+        public String Request { get; set; }
 
 
     }

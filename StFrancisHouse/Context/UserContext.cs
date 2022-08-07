@@ -22,6 +22,11 @@ namespace StFrancisHouse.Models
             return new MySqlConnection(ConnectionString);
         }
 
+        public T CheckNull<T>(object obj)
+        {
+            return (obj == DBNull.Value ? default(T) : (T)obj);
+        }
+
 
         //example method to get all Clients from Client Table on DB.
         //Note: May be out of date to modified/newest DB Schema based on sqlver1.0, no updates. 
@@ -260,10 +265,19 @@ namespace StFrancisHouse.Models
                 {
                     //adding information MUST reflect the exact table id inside the [" "]
                     //whereas the assignments must match the model data. 
+                    
+                    
                     while (reader.Read())
                     {
-                        //checkForNull((reader["LastBackPack"]));
-                        //timeHolderBackpack = ConvertFromDBVal<string>(reader["LastBackPack"]);
+                    
+
+                     //   while (reader.Read())
+                     //   {
+                     //       tblBPN_InTrRecon Bpn = new tblBPN_InTrRecon();
+                     //       Bpn.BPN_Date = CheckNull<DateTime?>(dr["BPN_Date"]);
+                     //       Bpn.Cust_Backorder_Qty = CheckNull<int?>(dr["Cust_Backorder_Qty"]);
+                     //       Bpn.Cust_Min = CheckNull<int?>(dr["Cust_Min"]);
+                     //   }
 
 
                         clientsVisits.Add(new Visit()
@@ -271,7 +285,17 @@ namespace StFrancisHouse.Models
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
                             VisitDate = (DateTime)reader["Date"],
-                            //LastBackpack = (DateTime)reader["LastBackpack"],
+                            LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
+                            Request = CheckNull<String>(reader["Request"].ToString())
+
+
+                            //if ((DateTime)reader["LastBackpack"] == null)
+                            //{
+                            //  clientsVisits.LastBackpack = backSleepDefault;
+                            //}
+
+                            //LastBackpack = (DateTime)reader["LastBackpack"] != null ? value : backSleepDefault,
+                            //LastBackpack = (DateTime)reader["LastBackpack"] ?? "default_value";
                             //LastBackpack = (DateTime)timeHolderBackpack
                             //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
                             //Lasts can be null, so need to find a way around that exception.
