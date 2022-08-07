@@ -35,7 +35,7 @@ namespace StFrancisHouse.Models
             return (obj == DBNull.Value ? value : Convert.ToDateTime(obj));
         }
 
-        public static string toString(object obj, string value = "none")
+        public static string ToString(object obj, string value = "none")
         {
             return (obj == DBNull.Value ? value : value.ToString());
         }
@@ -158,50 +158,50 @@ namespace StFrancisHouse.Models
             return clients; //returns the client list.
         }
 
-        public List<Client> getClientByInfo(string firstName)
-        {
-            List<Client> clients = new List<Client>();
-            int numEntry = 50; //change this to user chosen value in production later.  
-
-            //adjusted formatting for easier cmd string.
-            string insertFirstName = "'" + firstName + "'";
-
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-
-
-
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE FirstName LIKE "+ insertFirstName +"%", conn);
-
-
-                //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
-
-
-                using (var reader = cmd.ExecuteReader())
-                {
-                    //adding information MUST reflect the exact table id inside the [" "]
-                    //whereas the assignments must match the model data. 
-                    while (reader.Read())
-                    {
-                        clients.Add(new Client()
-                        {
-                            ClientID = Convert.ToInt32(reader["ClientID"]),
-                            FirstName = reader["FirstName"].ToString(),
-                            LastName = reader["LastName"].ToString(),
-                            MiddleInitial = reader["MI"].ToString(),
-                            Birthday = reader["Birthday"].ToString(),
-                            ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                            Race = reader["Race"].ToString(),
-                            Gender = reader["Gender"].ToString(),
-                            ClientNote = reader["ClientNote"].ToString()
-                        });
-                    }
-                }
-
-            }
-            return clients; //returns the client list.
-        }
+     //   public List<Client> getClientByInfo(string firstName)
+     //   {
+     //       List<Client> clients = new List<Client>();
+     //       int numEntry = 50; //change this to user chosen value in production later.  
+     //
+     //       //adjusted formatting for easier cmd string.
+     //       string insertFirstName = "'" + firstName + "'";
+     //
+     //       using (MySqlConnection conn = GetConnection())
+     //       {
+     //           conn.Open();
+     //
+     //
+     //
+     //           MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE FirstName LIKE "+ insertFirstName +"%", conn);
+     //
+     //
+     //           //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
+     //
+     //
+     //           using (var reader = cmd.ExecuteReader())
+     //           {
+     //               //adding information MUST reflect the exact table id inside the [" "]
+     //               //whereas the assignments must match the model data. 
+     //               while (reader.Read())
+     //               {
+     //                   clients.Add(new Client()
+     //                   {
+     //                       ClientID = Convert.ToInt32(reader["ClientID"]),
+     //                       FirstName = reader["FirstName"].ToString(),
+     //                       LastName = reader["LastName"].ToString(),
+     //                       MiddleInitial = reader["MI"].ToString(),
+     //                       Birthday = reader["Birthday"].ToString(),
+     //                       ZipCode = Convert.ToInt32(reader["Zip Code"]),
+     //                       Race = reader["Race"].ToString(),
+     //                       Gender = reader["Gender"].ToString(),
+     //                       ClientNote = reader["ClientNote"].ToString()
+     //                   });
+     //               }
+     //           }
+     //
+     //       }
+     //       return clients; //returns the client list.
+     //   }
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
