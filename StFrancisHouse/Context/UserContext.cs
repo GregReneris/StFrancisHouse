@@ -35,6 +35,10 @@ namespace StFrancisHouse.Models
             return (obj == DBNull.Value ? value : Convert.ToDateTime(obj));
         }
 
+        public static string toString(object obj, string value = "none")
+        {
+            return (obj == DBNull.Value ? value : value.ToString());
+        }
 
 
         //example method to get all Clients from Client Table on DB.
