@@ -315,10 +315,10 @@ namespace StFrancisHouse.Models
                         {
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
-                            Mens = Convert.ToInt32(reader["Mens"]),
-                            Womens = Convert.ToInt32(reader["Womens"]),
-                            Kids = Convert.ToInt32(reader["Kids"]),
-                            //VisitDate = (DateTime)reader["Date"],
+                            //Mens = Convert.ToInt32(reader["Mens"]),
+                            //Womens = Convert.ToInt32(reader["Womens"]),
+                            //Kids = Convert.ToInt32(reader["Kids"]),
+                            VisitDate = (DateTime)reader["Date"],
                             //LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
                             //LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
                             
