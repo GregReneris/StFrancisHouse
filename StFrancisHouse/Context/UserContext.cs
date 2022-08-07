@@ -308,9 +308,9 @@ namespace StFrancisHouse.Models
                         {
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
-                            Mens =
-                            Womens = 
-                            Kids =  
+                           // Mens =
+                           // Womens = 
+                           // Kids =  
                             VisitDate = (DateTime)reader["Date"],
                             LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
                             LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
