@@ -331,8 +331,8 @@ namespace StFrancisHouse.Models
                             VisitDate = ToDateTime(reader["Date"]),
                             LastBackpack = ToDateTime(reader["LastBackpack"]),
                             LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
-                            Request = reader["Request"].ToString()
-                        }); ;
+                            Request = ToString(reader["Request"])
+                        }); 
                     }
                 }
 
