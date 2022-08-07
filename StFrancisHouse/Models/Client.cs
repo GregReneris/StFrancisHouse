@@ -23,6 +23,8 @@ namespace StFrancisHouse.Models
         public string ClientNote { get; set; }
 
         public bool Banned { get; set; }
+        
+        public int LastVisitID { get; set; }
 
         public List<Visit> Visits { get; set; }
 

@@ -94,19 +94,21 @@ namespace StFrancisHouse.Models
                 string sqlcmd = "SELECT * from Client";
                 string seperator = " WHERE ";
 
-                if (firstName.Length > 0)
+                if (firstName != null)
                 {
                     sqlcmd += seperator + "FirstName = '" + firstName + "' ";
                     seperator = " AND ";
                 }
 
-                if (lastName.Length > 0)
+                //if (CheckNull<string>(lastName).Length > 0)
+                
+                if (lastName != null)
                 {
                     sqlcmd += seperator + "LastName = '" + lastName + "' ";
                     seperator = " AND ";
                 }
 
-                if (birthdate.Length > 0)
+                if (birthdate != null)
                 {
                     sqlcmd += seperator + "BIRTHDAY = '" + birthdate + "' ";
                     seperator = " AND ";
