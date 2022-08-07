@@ -180,7 +180,8 @@ namespace StFrancisHouse.Models
                             Birthday = reader["Birthday"].ToString(),
                             ZipCode = Convert.ToInt32(reader["Zip Code"]),
                             Race = reader["Race"].ToString(),
-                            Gender = reader["Gender"].ToString()
+                            Gender = reader["Gender"].ToString(),
+                            ClientNote = reader["ClientNote"].ToString()
                         });
                     }
                 }
@@ -310,15 +311,16 @@ namespace StFrancisHouse.Models
                         {
                             VisitID = Convert.ToInt32(reader["VisitID"]),
                             ClientID = Convert.ToInt32(reader["ClientID"]),
-                           // Mens =
-                           // Womens = 
-                           // Kids =  
-                            VisitDate = (DateTime)reader["Date"],
-                            LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
-                            LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
-                            Request = CheckNull<String>(reader["Request"].ToString())
+                            Mens = Convert.ToInt32(reader["Mens"]),
+                            Womens = Convert.ToInt32(reader["Womens"]),
+                            Kids = Convert.ToInt32(reader["Kids"]),
+                            //VisitDate = (DateTime)reader["Date"],
+                            //LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
+                            //LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
+                            
+                            
 
-
+                            //Request = CheckNull<String>(reader["Request"].ToString())
                             //if ((DateTime)reader["LastBackpack"] == null)
                             //{
                             //  clientsVisits.LastBackpack = backSleepDefault;
