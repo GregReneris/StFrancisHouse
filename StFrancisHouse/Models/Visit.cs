@@ -13,6 +13,12 @@ namespace StFrancisHouse.Models
         
         public int ClientID { get; set; }
 
+        public int Mens { get; set; }
+
+        public int Womens { get; set; }
+
+        public int Kids { get; set; }
+
         public DateTime VisitDate { get; set; }
 
         public DateTime LastBackpack { get; set; }

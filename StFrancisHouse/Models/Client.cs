@@ -4,7 +4,6 @@ namespace StFrancisHouse.Models
 {
     public class Client
     {
-        //Greg: updated ClientID to int from String 7/17
         public int ClientID { get; set; } = default!;
 
         public string LastName { get; set; }
