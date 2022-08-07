@@ -136,7 +136,9 @@ namespace StFrancisHouse.Models
                             Birthday = reader["Birthday"].ToString(),
                             ZipCode = Convert.ToInt32(reader["Zip Code"]),
                             Race = reader["Race"].ToString(),
-                            Gender = reader["Gender"].ToString()
+                            Gender = reader["Gender"].ToString(),
+                            ClientNote = reader["ClientNote"].ToString()
+
                         });
                     }
                 }
