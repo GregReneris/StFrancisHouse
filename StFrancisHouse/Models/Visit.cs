@@ -19,11 +19,11 @@ namespace StFrancisHouse.Models
 
         public int Kids { get; set; }
 
-        public DateTime VisitDate { get; set; }
+        public Nullable<DateTime> VisitDate { get; set; }
 
-        public DateTime LastBackpack { get; set; }
+        public Nullable<DateTime> LastBackpack { get; set; }
 
-        public DateTime LastSleepingBag { get; set; }
+        public Nullable<DateTime> LastSleepingBag { get; set; }
 
         public String Request { get; set; }
 

@@ -25,10 +25,16 @@ namespace StFrancisHouse.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public T CheckNull<T>(object obj)
+        public static int ToInt32(object obj, int value = 0)
         {
-            return (obj == DBNull.Value ? default(T) : (T)obj);
+            return (obj == DBNull.Value ? value : Convert.ToInt32(obj));
         }
+        
+        public static Nullable<DateTime> ToDateTime(object obj, Nullable<DateTime> value = null)
+        {
+            return (obj == DBNull.Value ? value : Convert.ToDateTime(obj));
+        }
+
 
 
         //example method to get all Clients from Client Table on DB.
@@ -290,7 +296,7 @@ namespace StFrancisHouse.Models
                 MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
                 
                 //string timeHolderBackpack;
-                //DateTime timeHolderSleepingBag;
+                //Nullable<DateTime> timeHolderSleepingBag;
 
                 using (var reader = cmd2.ExecuteReader())
                 {
@@ -300,42 +306,32 @@ namespace StFrancisHouse.Models
                     
                     while (reader.Read())
                     {
-                    
 
-                     //   while (reader.Read())
-                     //   {
-                     //       tblBPN_InTrRecon Bpn = new tblBPN_InTrRecon();
-                     //       Bpn.BPN_Date = CheckNull<DateTime?>(dr["BPN_Date"]);
-                     //       Bpn.Cust_Backorder_Qty = CheckNull<int?>(dr["Cust_Backorder_Qty"]);
-                     //       Bpn.Cust_Min = CheckNull<int?>(dr["Cust_Min"]);
-                     //   }
+
+                        //   while (reader.Read())
+                        //   {
+                        //       tblBPN_InTrRecon Bpn = new tblBPN_InTrRecon();
+                        //       Bpn.BPN_Date = CheckNull<Nullable<DateTime>?>(dr["BPN_Date"]);
+                        //       Bpn.Cust_Backorder_Qty = CheckNull<int?>(dr["Cust_Backorder_Qty"]);
+                        //       Bpn.Cust_Min = CheckNull<int?>(dr["Cust_Min"]);
+                        //   }
 
 
                         clientsVisits.Add(new Visit()
                         {
-                            VisitID = Convert.ToInt32(reader["VisitID"]),
-                            ClientID = Convert.ToInt32(reader["ClientID"]),
-                            //Mens = Convert.ToInt32(reader["Mens"]),
-                            //Womens = Convert.ToInt32(reader["Womens"]),
-                            //Kids = Convert.ToInt32(reader["Kids"]),
-                            VisitDate = (DateTime)reader["Date"],
-                            //LastBackpack = CheckNull<DateTime>(reader["LastBackpack"]),
-                            //LastSleepingBag = CheckNull<DateTime>(reader["LastSleepingBag"]),
-                            
-                            
+                            VisitID = ToInt32(reader["VisitID"]),
+                            ClientID = ToInt32(reader["ClientID"]),
+                            Mens = ToInt32(reader["Mens"]),
+                            Womens = ToInt32(reader["Womens"]),
+                            Kids = ToInt32(reader["Kids"]),
+                            VisitDate = ToDateTime(reader["Date"]),
+                            LastBackpack = ToDateTime(reader["LastBackpack"]),
+                            LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+                            Request = reader["Request"].ToString()
 
-                            //Request = CheckNull<String>(reader["Request"].ToString())
-                            //if ((DateTime)reader["LastBackpack"] == null)
-                            //{
-                            //  clientsVisits.LastBackpack = backSleepDefault;
-                            //}
+                            ClientNote = reader["ClientNote"].ToString()
 
-                            //LastBackpack = (DateTime)reader["LastBackpack"] != null ? value : backSleepDefault,
-                            //LastBackpack = (DateTime)reader["LastBackpack"] ?? "default_value";
-                            //LastBackpack = (DateTime)timeHolderBackpack
-                            //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
-                            //Lasts can be null, so need to find a way around that exception.
-                        });
+                        }); ;
                     }
                 }
 
@@ -389,12 +385,10 @@ namespace StFrancisHouse.Models
                         
                             clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
                             clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
-                            clientVisit.VisitDate = (DateTime)reader["Date"];
-                            //LastBackpack = (DateTime)reader["LastBackpack"],
-                            //LastBackpack = (DateTime)timeHolderBackpack
-                            //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
-                            //Lasts can be null, so need to find a way around that exception.
-                        
+                            clientVisit.VisitDate = ToDateTime(reader["Date"]);
+                            clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
+                            clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+                            clientVisit.Request = reader["Request"].ToString();
                     }
                 }
             }
@@ -448,12 +442,10 @@ namespace StFrancisHouse.Models
 
                         clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
                         clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
-                        clientVisit.VisitDate = (DateTime)reader["Date"];
-                        //LastBackpack = (DateTime)reader["LastBackpack"],
-                        //LastBackpack = (DateTime)timeHolderBackpack
-                        //LastSleepingBag = (DateTime)reader["LastSleepingBag"]
-                        //Lasts can be null, so need to find a way around that exception.
-
+                        clientVisit.VisitDate = ToDateTime(reader["Date"]);
+                        clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
+                        clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+                        clientVisit.Request = reader["Request"].ToString();
                     }
                 }
             }
@@ -469,34 +461,34 @@ namespace StFrancisHouse.Models
          * Helper function section!
          * 
          */
-        public object checkForNull(object input)
-        {
-            DateTime fixedDateTime = DateTime.MinValue;
-            //object example = new DBNull();
-
-            if(input == null)
-            {
-                input = fixedDateTime.ToString();
-            }
-
-            return input;
-        }
-
-        public static T ConvertFromDBVal<T>(object obj)
-        {
-            if (obj == null || obj == DBNull.Value)
-            {
-                //if(obj.GetType == DBNull.Value)
-                //{
-                //      return DateTime.minValue or something.
-                //}
-                return default(T); // returns the default value for the type
-            }
-            else
-            {
-                return (T)obj;
-            }
-        }
+       //   public object checkForNull(object input)
+       // {
+       //     Nullable<DateTime> fixedNullable<DateTime> = Nullable<DateTime>.MinValue;
+       //     //object example = new DBNull();
+       //
+       //     if(input == null)
+       //     {
+       //         input = fixedNullable<DateTime>.ToString();
+       //     }
+       //
+       //     return input;
+       // }
+       //
+       // public static T ConvertFromDBVal<T>(object obj)
+       // {
+       //     if (obj == null || obj == DBNull.Value)
+       //     {
+       //         //if(obj.GetType == DBNull.Value)
+       //         //{
+       //         //      return Nullable<DateTime>.minValue or something.
+       //         //}
+       //         return default(T); // returns the default value for the type
+       //     }
+       //     else
+       //     {
+       //         return (T)obj;
+       //     }
+       // }
 
 
 
