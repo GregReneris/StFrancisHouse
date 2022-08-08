@@ -149,6 +149,7 @@ namespace StFrancisHouse.Models
                             Race = reader["Race"].ToString(),
                             Gender = reader["Gender"].ToString(),
                             ClientNote = reader["ClientNote"].ToString()
+                            //note sure: add latest visitID.
 
                         });
                     }
@@ -207,6 +208,8 @@ namespace StFrancisHouse.Models
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
         public void createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
         {
+
+            //TODO: return the clientID and the latest / today's new visitID
 
             List<Client> clients = new List<Client>();
             int numEntry = 2; //change this to user chosen value in production later.  
@@ -401,6 +404,8 @@ namespace StFrancisHouse.Models
 
      public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
         {
+            //TODO Add the front end's version parameters in so we line up.
+
             Visit clientVisit = new Visit();
 
             int insertMens = mens;

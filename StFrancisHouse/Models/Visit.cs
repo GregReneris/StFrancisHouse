@@ -28,5 +28,7 @@ namespace StFrancisHouse.Models
         public String Request { get; set; }
 
 
+        //TODO adjust model to fit the front end.
+
     }
 }
