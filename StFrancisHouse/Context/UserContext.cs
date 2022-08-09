@@ -47,7 +47,7 @@ namespace StFrancisHouse.Models
 
         public static bool varChar1ToBool(string input)
         {
-            if (input.Equals(0))
+            if (input.Equals("0"))
             {
                 return false;
             }
@@ -173,33 +173,34 @@ namespace StFrancisHouse.Models
 
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
-                
+
                 //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
 
+                clients = addClientsToList(cmd, clients);
 
-                using (var reader = cmd.ExecuteReader())
-                {
-                    //adding information MUST reflect the exact table id inside the [" "]
-                    //whereas the assignments must match the model data. 
-                    while (reader.Read())
-                    {
-                        clients.Add(new Client()
-                        {
-                            ClientID = Convert.ToInt32(reader["ClientID"]),
-                            FirstName = reader["FirstName"].ToString(),
-                            LastName = reader["LastName"].ToString(),
-                            MiddleInitial = reader["MI"].ToString(),
-                            Birthday = reader["Birthday"].ToString(),
-                            ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                            Race = reader["Race"].ToString(),
-                            Gender = reader["Gender"].ToString(),
-                            ClientNote = reader["ClientNote"].ToString(),
-                            Banned = varChar1ToBool(reader["Banned"].ToString())
-                            //note sure: add latest visitID.
-
-                        });
-                    }
-                }
+                //using (var reader = cmd.ExecuteReader())
+                //{
+                //    //adding information MUST reflect the exact table id inside the [" "]
+                //    //whereas the assignments must match the model data. 
+                //    while (reader.Read())
+                //    {
+                //        clients.Add(new Client()
+                //        {
+                //            ClientID = Convert.ToInt32(reader["ClientID"]),
+                //            FirstName = reader["FirstName"].ToString(),
+                //            LastName = reader["LastName"].ToString(),
+                //            MiddleInitial = reader["MI"].ToString(),
+                //            Birthday = reader["Birthday"].ToString(),
+                //            ZipCode = Convert.ToInt32(reader["Zip Code"]),
+                //            Race = reader["Race"].ToString(),
+                //            Gender = reader["Gender"].ToString(),
+                //            ClientNote = reader["ClientNote"].ToString(),
+                //            Banned = varChar1ToBool(reader["Banned"].ToString())
+                //            //note sure: add latest visitID.
+                //
+                //        });
+                //    }
+                //}
 
             }
             return clients; //returns the client list.
