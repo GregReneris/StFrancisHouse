@@ -57,6 +57,35 @@ namespace StFrancisHouse.Models
             }
         }
 
+        public static List<Client> addClientsToList(MySqlCommand cmd, List<Client> clients)
+        {
+            using (var reader = cmd.ExecuteReader())
+            {
+                //adding information MUST reflect the exact table id inside the [" "]
+                //whereas the assignments must match the model data. 
+                while (reader.Read())
+                {
+                    clients.Add(new Client()
+                    {
+                        ClientID = Convert.ToInt32(reader["ClientID"]),
+                        FirstName = reader["FirstName"].ToString(),
+                        LastName = reader["LastName"].ToString(),
+                        MiddleInitial = reader["MI"].ToString(),
+                        Birthday = reader["Birthday"].ToString(),
+                        ZipCode = Convert.ToInt32(reader["Zip Code"]),
+                        Race = reader["Race"].ToString(),
+                        Gender = reader["Gender"].ToString(),
+                        ClientNote = reader["ClientNote"].ToString(),
+                        Banned = varChar1ToBool(reader["Banned"].ToString())
+                        //note sure: add latest visitID.
+
+                    });
+                }
+            }
+
+            return clients;
+        }
+
         //example method to get all Clients from Client Table on DB.
         //Note: May be out of date to modified/newest DB Schema based on sqlver1.0, no updates. 
         //Note: possible null assignments for fields. 
@@ -175,6 +204,8 @@ namespace StFrancisHouse.Models
             }
             return clients; //returns the client list.
         }
+
+
 
      //   public List<Client> getClientByInfo(string firstName)
      //   {
