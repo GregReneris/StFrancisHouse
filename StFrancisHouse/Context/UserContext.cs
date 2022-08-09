@@ -40,6 +40,22 @@ namespace StFrancisHouse.Models
             return (obj == DBNull.Value ? value : value.ToString());
         }
 
+        public static bool BoolCheck(object obj, bool value = false)
+        {
+            return (obj == DBNull.Value ? value : value);
+        }
+
+        public static bool varChar1ToBool(string input)
+        {
+            if (input.Equals(0))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
 
         //example method to get all Clients from Client Table on DB.
         //Note: May be out of date to modified/newest DB Schema based on sqlver1.0, no updates. 
@@ -148,7 +164,8 @@ namespace StFrancisHouse.Models
                             ZipCode = Convert.ToInt32(reader["Zip Code"]),
                             Race = reader["Race"].ToString(),
                             Gender = reader["Gender"].ToString(),
-                            ClientNote = reader["ClientNote"].ToString()
+                            ClientNote = reader["ClientNote"].ToString(),
+                            Banned = varChar1ToBool(reader["Banned"].ToString())
                             //note sure: add latest visitID.
 
                         });
