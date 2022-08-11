@@ -207,51 +207,46 @@ namespace StFrancisHouse.Models
         }
 
 
+        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        {
+            string insertFirstName = "'" + firstName + "'";
+            string insertLastName = "'" + lastName + "'";
+            string insertMiddleInitial = "'" + middleInitial + "'";
+            string insertSuffix = "'" + suffix + "'";
+            string insertBirthdate = "'" + birthdate + "'";
+            string insertRace = "'" + race + "'";
+            string insertGender = "'" + gender + "'";
+            string insertZip = "" + ZipCode + "";
 
-     //   public List<Client> getClientByInfo(string firstName)
-     //   {
-     //       List<Client> clients = new List<Client>();
-     //       int numEntry = 50; //change this to user chosen value in production later.  
-     //
-     //       //adjusted formatting for easier cmd string.
-     //       string insertFirstName = "'" + firstName + "'";
-     //
-     //       using (MySqlConnection conn = GetConnection())
-     //       {
-     //           conn.Open();
-     //
-     //
-     //
-     //           MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE FirstName LIKE "+ insertFirstName +"%", conn);
-     //
-     //
-     //           //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE LastName = " + lastname + " AND BIRTHDAY = " + birthdate , conn);
-     //
-     //
-     //           using (var reader = cmd.ExecuteReader())
-     //           {
-     //               //adding information MUST reflect the exact table id inside the [" "]
-     //               //whereas the assignments must match the model data. 
-     //               while (reader.Read())
-     //               {
-     //                   clients.Add(new Client()
-     //                   {
-     //                       ClientID = Convert.ToInt32(reader["ClientID"]),
-     //                       FirstName = reader["FirstName"].ToString(),
-     //                       LastName = reader["LastName"].ToString(),
-     //                       MiddleInitial = reader["MI"].ToString(),
-     //                       Birthday = reader["Birthday"].ToString(),
-     //                       ZipCode = Convert.ToInt32(reader["Zip Code"]),
-     //                       Race = reader["Race"].ToString(),
-     //                       Gender = reader["Gender"].ToString(),
-     //                       ClientNote = reader["ClientNote"].ToString()
-     //                   });
-     //               }
-     //           }
-     //
-     //       }
-     //       return clients; //returns the client list.
-     //   }
+
+            string sqlFormattedValueString = insertFirstName + ", " + insertLastName + ", " + insertMiddleInitial + ", " + insertSuffix + ", " + insertBirthdate + ", " + insertZip + ", " +
+                insertRace + ", " + insertGender;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                //Update existing client
+                //MySqlCommand cmd = new MySqlCommand("Update client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ") WHERE CLIENTID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("Update client SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+" WHERE ClientID = " + clientID, conn);
+                
+                
+                Console.WriteLine(cmd.ToString());
+
+                int result = cmd.ExecuteNonQuery();
+
+                //INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES("Ken", "Hamilton", "B", "MRS", '1935-12-23', 98344, "N/A", "M");
+
+                //Retrieve this client
+                //MySqlCommand cmd2 = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
+
+
+            }
+
+        }
+
+
+
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
