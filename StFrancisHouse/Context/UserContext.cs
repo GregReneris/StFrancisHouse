@@ -506,41 +506,6 @@ namespace StFrancisHouse.Models
 
 
 
-        /*
-         * 
-         * Helper function section!
-         * 
-         */
-       //   public object checkForNull(object input)
-       // {
-       //     Nullable<DateTime> fixedNullable<DateTime> = Nullable<DateTime>.MinValue;
-       //     //object example = new DBNull();
-       //
-       //     if(input == null)
-       //     {
-       //         input = fixedNullable<DateTime>.ToString();
-       //     }
-       //
-       //     return input;
-       // }
-       //
-       // public static T ConvertFromDBVal<T>(object obj)
-       // {
-       //     if (obj == null || obj == DBNull.Value)
-       //     {
-       //         //if(obj.GetType == DBNull.Value)
-       //         //{
-       //         //      return Nullable<DateTime>.minValue or something.
-       //         //}
-       //         return default(T); // returns the default value for the type
-       //     }
-       //     else
-       //     {
-       //         return (T)obj;
-       //     }
-       // }
-
-
 
         //Greg: Not sure if the below needs to be commented out since conectionstring above has been used. 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
