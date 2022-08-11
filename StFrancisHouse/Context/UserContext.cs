@@ -215,7 +215,7 @@ namespace StFrancisHouse.Models
         }
 
 
-        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode, bool Banned)
         {
             string insertFirstName = "'" + firstName + "'";
             string insertLastName = "'" + lastName + "'";
@@ -224,6 +224,7 @@ namespace StFrancisHouse.Models
             string insertBirthdate = "'" + birthdate + "'";
             string insertRace = "'" + race + "'";
             string insertGender = "'" + gender + "'";
+            string insertBool = "'" + bool + "'";
             string insertZip = "" + ZipCode + "";
 
 
@@ -236,7 +237,7 @@ namespace StFrancisHouse.Models
 
                 //Update existing client
                 //MySqlCommand cmd = new MySqlCommand("Update client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ") WHERE CLIENTID = " + clientID, conn);
-                MySqlCommand cmd = new MySqlCommand("Update client SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+" WHERE ClientID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("Update client SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
                 
                 
                 Console.WriteLine(cmd.ToString());
@@ -353,9 +354,14 @@ namespace StFrancisHouse.Models
 
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
                 MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
-                
+
+                //SELECT * from visit
+                //ORDER BY stu_date DESC
+                //WHERE ClientID = ;
+
                 //string timeHolderBackpack;
                 //Nullable<DateTime> timeHolderSleepingBag;
+
 
                 using (var reader = cmd2.ExecuteReader())
                 {
@@ -366,14 +372,6 @@ namespace StFrancisHouse.Models
                     while (reader.Read())
                     {
 
-
-                        //   while (reader.Read())
-                        //   {
-                        //       tblBPN_InTrRecon Bpn = new tblBPN_InTrRecon();
-                        //       Bpn.BPN_Date = CheckNull<Nullable<DateTime>?>(dr["BPN_Date"]);
-                        //       Bpn.Cust_Backorder_Qty = CheckNull<int?>(dr["Cust_Backorder_Qty"]);
-                        //       Bpn.Cust_Min = CheckNull<int?>(dr["Cust_Min"]);
-                        //   }
 
 
                         clientsVisits.Add(new Visit()
