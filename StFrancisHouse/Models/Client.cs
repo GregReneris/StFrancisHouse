@@ -26,6 +26,8 @@ namespace StFrancisHouse.Models
         
         public int LastVisitID { get; set; }
 
+        public Nullable<DateTime> MostRecentVisitDate { get; set; }
+
         public List<Visit> Visits { get; set; }
 
 
