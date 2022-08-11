@@ -25,6 +25,12 @@ namespace StFrancisHouse.Models
             return new MySqlConnection(ConnectionString);
         }
 
+
+        #region Helper Functions
+        /**
+         * Helper function section!
+         * 
+         */
         public static int ToInt32(object obj, int value = 0)
         {
             return (obj == DBNull.Value ? value : Convert.ToInt32(obj));
@@ -56,6 +62,8 @@ namespace StFrancisHouse.Models
                 return true;
             }
         }
+        #endregion
+
 
         public static List<Client> addClientsToList(MySqlCommand cmd, List<Client> clients)
         {
