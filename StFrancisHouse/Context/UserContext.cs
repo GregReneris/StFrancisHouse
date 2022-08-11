@@ -217,6 +217,17 @@ namespace StFrancisHouse.Models
 
         public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode, bool Banned)
         {
+            string b_result;
+            if(Banned == true)
+            {
+                b_result = "1";
+            }
+            else
+            {
+                b_result = "0";
+            }
+
+            
             string insertFirstName = "'" + firstName + "'";
             string insertLastName = "'" + lastName + "'";
             string insertMiddleInitial = "'" + middleInitial + "'";
@@ -224,7 +235,7 @@ namespace StFrancisHouse.Models
             string insertBirthdate = "'" + birthdate + "'";
             string insertRace = "'" + race + "'";
             string insertGender = "'" + gender + "'";
-            string insertBool = "'" + bool + "'";
+            string insertBool = "'" + b_result + "'";
             string insertZip = "" + ZipCode + "";
 
 
