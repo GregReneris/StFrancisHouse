@@ -139,7 +139,9 @@ namespace StFrancisHouse.Models
         public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
         {
             List<Client> clients = new List<Client>();
-            int numEntry = 50; //change this to user chosen value in production later.  
+            //int numEntry = 50; //change this to user chosen value in production later.  
+            List<Visit> clientsVisits = new List<Visit>();
+            int numVisits = 1;
 
             //adjusted formatting for easier cmd string.
             //string insertLastName = "'" + lastName + "'";
@@ -186,31 +188,56 @@ namespace StFrancisHouse.Models
 
                 clients = addClientsToList(cmd, clients);
 
-                //using (var reader = cmd.ExecuteReader())
-                //{
-                //    //adding information MUST reflect the exact table id inside the [" "]
-                //    //whereas the assignments must match the model data. 
-                //    while (reader.Read())
-                //    {
-                //        clients.Add(new Client()
-                //        {
-                //            ClientID = Convert.ToInt32(reader["ClientID"]),
-                //            FirstName = reader["FirstName"].ToString(),
-                //            LastName = reader["LastName"].ToString(),
-                //            MiddleInitial = reader["MI"].ToString(),
-                //            Birthday = reader["Birthday"].ToString(),
-                //            ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                //            Race = reader["Race"].ToString(),
-                //            Gender = reader["Gender"].ToString(),
-                //            ClientNote = reader["ClientNote"].ToString(),
-                //            Banned = varChar1ToBool(reader["Banned"].ToString())
-                //            //note sure: add latest visitID.
-                //
-                //        });
-                //    }
-                //}
+
+                //can only get visits if client exists, so check to make sure there is a client entry.
+                int counter = 0;
+
+                if (clients.Count > 0)
+                {
+                    while (counter < clients.Count)
+                    {
+
+                        int clientID = clients[counter].ClientID;
+
+                        MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT " +numVisits, conn);
+
+                        //SELECT * from visit
+                        //ORDER BY stu_date DESC
+                        //WHERE ClientID = ;
+
+                        //string timeHolderBackpack;
+                        //Nullable<DateTime> timeHolderSleepingBag;
+
+
+                        using (var reader = cmd2.ExecuteReader())
+                        {
+                            //adding information MUST reflect the exact table id inside the [" "]
+                            //whereas the assignments must match the model data. 
+
+                            while (reader.Read())
+                            {
+                                clientsVisits.Add(new Visit()
+                                {
+                                    VisitID = ToInt32(reader["VisitID"]),
+                                    ClientID = ToInt32(reader["ClientID"]),
+                                    Mens = ToInt32(reader["Mens"]),
+                                    Womens = ToInt32(reader["Womens"]),
+                                    Kids = ToInt32(reader["Kids"]),
+                                    VisitDate = ToDateTime(reader["Date"]),
+                                    LastBackpack = ToDateTime(reader["LastBackpack"]),
+                                    LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+                                    Request = ToString(reader["Request"])
+                                });
+                            }
+                        }
+
+                        clients[counter].Visits = clientsVisits;
+                        counter++;
+                    }
+                }
 
             }
+
             return clients; //returns the client list.
         }
 
