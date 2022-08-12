@@ -3,9 +3,11 @@
     public class Volunteer
     {
         //username for loging in
-        public int Username { get; set; }
+        public string Username { get; set; }
 
         //password for logging in as a volunteer
-        public int Password { get; set; }
+        public string Password { get; set; }
+
+        public int VolunteerID { get; set; }
     }
 }

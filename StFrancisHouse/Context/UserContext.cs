@@ -136,6 +136,34 @@ namespace StFrancisHouse.Models
             return clients; //returns the client list.
         }
 
+        public List<Volunteer> getAllVolunteers()
+        {
+            List<Volunteer> Volunteers = new List<Volunteer>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * from volunteer", conn);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    //adding information MUST reflect the exact table id inside the [" "]
+                    //whereas the assignments must match the model data. 
+                    while (reader.Read())
+                    {
+                        Volunteers.Add(new Volunteer()
+                        {
+                            VolunteerID = Convert.ToInt32(reader["VolunteerID"]),
+                            Username = reader["Username"].ToString(),
+                            Password = reader["Password"].ToString()
+                        });
+                    }
+                }
+
+                return Volunteers;
+            }
+        }
+
         public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
         {
             List<Client> clients = new List<Client>();

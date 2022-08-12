@@ -45,26 +45,16 @@ namespace StFrancisHouse.Controllers
         }
 
 
-    //    /*
-    //    * When you have all firstname parameter for getClientByInfo.
-    //    * 
-    //    */
-    //    public List<Client> getClientByInfo(string firstName)
-    //    {
-    //        UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
-    //
-    //        //object of some sort.
-    //
-    //        //pass in object of some sort.
-    //        List<Client> clients = context.getClientByInfo(firstName);
-    //
-    //        return clients;
-    //    }
 
-        /*
-         * When you have all 3 parameters for getClientByInfo.
-         * Best search results
-         */
+        public List<Volunteer> getAllUsers()
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            List<Volunteer> Volunteers = context.getAllVolunteers();
+
+            return Volunteers;
+        }
+
         public List<Client> getClientByInfo(string firstName, string lastName, string birthdate)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
