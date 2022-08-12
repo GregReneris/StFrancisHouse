@@ -188,9 +188,12 @@ namespace StFrancisHouse.Models
                 string sqlcmd = "SELECT * from Client";
                 string seperator = " WHERE ";
 
+                //   %input% searches for any values that have "input" in any position, for example. %le% could return Alex, Leopold, or Charles. An exact match is of course best. 
+
                 if (firstName != null)
                 {
-                    sqlcmd += seperator + "FirstName = '" + firstName + "' ";
+                    //sqlcmd += seperator + "FirstName = '" + firstName + "' ";
+                    sqlcmd += seperator + "FirstName LIKE '%" + firstName + "%' ";
                     seperator = " AND ";
                 }
 
@@ -198,7 +201,8 @@ namespace StFrancisHouse.Models
                 
                 if (lastName != null)
                 {
-                    sqlcmd += seperator + "LastName = '" + lastName + "' ";
+                    //sqlcmd += seperator + "LastName = '" + lastName + "' ";
+                    sqlcmd += seperator + "LastName LIKE '%" + lastName + "%' ";
                     seperator = " AND ";
                 }
 
@@ -224,10 +228,12 @@ namespace StFrancisHouse.Models
                 {
                     while (counter < clients.Count)
                     {
+                        List<Visit> clientsVisits2 = new List<Visit>();
 
                         int clientID = clients[counter].ClientID;
 
-                        MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT " +numVisits, conn);
+                        //MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT " +numVisits, conn);
+                        MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT 1", conn);
 
                         //SELECT * from visit
                         //ORDER BY stu_date DESC
@@ -244,7 +250,7 @@ namespace StFrancisHouse.Models
 
                             while (reader.Read())
                             {
-                                clientsVisits.Add(new Visit()
+                                clientsVisits2.Add(new Visit()
                                 {
                                     VisitID = ToInt32(reader["VisitID"]),
                                     ClientID = ToInt32(reader["ClientID"]),
@@ -259,7 +265,7 @@ namespace StFrancisHouse.Models
                             }
                         }
 
-                        clients[counter].Visits = clientsVisits;
+                        clients[counter].Visits = clientsVisits2;
                         counter++;
                     }
                 }
