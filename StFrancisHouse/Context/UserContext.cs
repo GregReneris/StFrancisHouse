@@ -327,7 +327,21 @@ namespace StFrancisHouse.Models
         }
 
 
+        public void deleteClientByID(int clientID)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
 
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM CLIENT WHERE ClientID = " + clientID, conn);
+
+                int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
+
+            }
+        }
+
+
+    
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
