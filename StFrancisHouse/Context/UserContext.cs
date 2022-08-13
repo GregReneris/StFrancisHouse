@@ -271,8 +271,13 @@ namespace StFrancisHouse.Models
                                     Womens = ToInt32(reader["Womens"]),
                                     Kids = ToInt32(reader["Kids"]),
                                     VisitDate = ToDateTime(reader["Date"]),
-                                    LastBackpack = ToDateTime(reader["LastBackpack"]),
-                                    LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+                                    
+                                    LastBackpack = ToDateTime(reader["LastBackPackDate"]),
+                                    LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
+                                    
+                                    //dev table.
+                                    //LastBackpack = ToDateTime(reader["LastBackpack"]),
+                                    //LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
                                     Request = ToString(reader["Request"])
                                 });
                             }
