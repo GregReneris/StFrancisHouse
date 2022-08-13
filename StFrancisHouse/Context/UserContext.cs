@@ -486,8 +486,12 @@ namespace StFrancisHouse.Models
                             Womens = ToInt32(reader["Womens"]),
                             Kids = ToInt32(reader["Kids"]),
                             VisitDate = ToDateTime(reader["Date"]),
-                            LastBackpack = ToDateTime(reader["LastBackpack"]),
-                            LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+                            //LastBackpack = ToDateTime(reader["LastBackpack"]),
+                            //LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+
+                            LastBackpack = ToDateTime(reader["LastBackPackDate"]),
+                            LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
+
                             Request = ToString(reader["Request"])
                         }); 
                     }
@@ -544,8 +548,13 @@ namespace StFrancisHouse.Models
                             clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
                             clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                             clientVisit.VisitDate = ToDateTime(reader["Date"]);
-                            clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
-                            clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+
+                        //clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
+                        //clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+
+                            clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
+                            clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
+
                             clientVisit.Request = reader["Request"].ToString();
                     }
                 }
@@ -603,8 +612,14 @@ namespace StFrancisHouse.Models
                         clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
                         clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                         clientVisit.VisitDate = ToDateTime(reader["Date"]);
-                        clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
-                        clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+                        
+                        
+                        //clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
+                        //clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+
+                        clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
+                        clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
+
                         clientVisit.Request = reader["Request"].ToString();
                     }
                 }
