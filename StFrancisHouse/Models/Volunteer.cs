@@ -9,5 +9,12 @@
         public string Password { get; set; }
 
         public int VolunteerID { get; set; }
+
+        public string VolunteerFirstName { get; set; }
+
+        public string VolunteerLastName { get; set; }
+
+        public bool isAdmin { get; set; }
+
     }
 }
