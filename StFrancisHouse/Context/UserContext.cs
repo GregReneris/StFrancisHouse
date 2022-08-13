@@ -9,6 +9,15 @@ namespace StFrancisHouse.Models
     public class UserContext : DbContext
     {
 
+        
+        //These two values represent the production clients and their visits (assistances in DB).
+        static string Ctable = "clients";
+        static string Vtable = "assistances";
+       
+        
+        //these two values represent the development tables for clients and their visits. 
+        //static string Vtable = "visits";
+        //static string Ctable = "client"; 
 
         //TODO: Add SQL encoder function or param parsing to ensure security and SQL consistency.
 
@@ -155,7 +164,10 @@ namespace StFrancisHouse.Models
                         {
                             VolunteerID = Convert.ToInt32(reader["VolunteerID"]),
                             Username = reader["Username"].ToString(),
-                            Password = reader["Password"].ToString()
+                            Password = reader["Password"].ToString(),
+                            VolunteerFirstName = reader["firstName"].ToString(),
+                            VolunteerLastName = reader["lastName"].ToString(),
+                            isAdmin = varChar1ToBool(reader["isAdmin"].ToString())
                         });
                     }
                 }
