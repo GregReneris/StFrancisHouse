@@ -117,7 +117,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
                 //MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE ClientID < " + numEntry , conn);
                 
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client", conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from " + Ctable, conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -197,7 +197,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
 
-                string sqlcmd = "SELECT * from Client";
+                string sqlcmd = "SELECT * from " + Ctable;
                 string seperator = " WHERE ";
 
                 //   %input% searches for any values that have "input" in any position, for example. %le% could return Alex, Leopold, or Charles. An exact match is of course best. 
@@ -245,7 +245,7 @@ namespace StFrancisHouse.Models
                         int clientID = clients[counter].ClientID;
 
                         //MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT " +numVisits, conn);
-                        MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT 1", conn);
+                        MySqlCommand cmd2 = new MySqlCommand("SELECT * from "+ Vtable +" WHERE ClientID =" + clientID + " ORDER BY Date DESC LIMIT 1", conn);
 
                         //SELECT * from visit
                         //ORDER BY stu_date DESC
