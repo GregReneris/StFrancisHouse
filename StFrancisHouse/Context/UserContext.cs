@@ -92,7 +92,8 @@ namespace StFrancisHouse.Models
                         ZipCode = Convert.ToInt32(reader["Zip Code"]),
                         Race = reader["Race"].ToString(),
                         Gender = reader["Gender"].ToString(),
-                        ClientNote = reader["ClientNote"].ToString(),
+                        //ClientNote = reader["ClientNote"].ToString(),
+                        ClientNote = reader["Note"].ToString(),
                         Banned = varChar1ToBool(reader["Banned"].ToString())
                         //note sure: add latest visitID.
 
