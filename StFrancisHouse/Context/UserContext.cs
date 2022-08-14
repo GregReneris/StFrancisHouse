@@ -225,6 +225,7 @@ namespace StFrancisHouse.Models
                     seperator = " AND ";
                 }
 
+                // adding limit to the number of responses to avoid hitting the query count of 18,000. 
                 sqlcmd += " LIMIT 15";
 
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
