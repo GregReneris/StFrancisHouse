@@ -198,7 +198,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
 
-                string sqlcmd = "SELECT * from " + Ctable;
+                string sqlcmd = "SELECT * from " + Ctable + " LIMIT 15";
                 string seperator = " WHERE ";
 
                 //   %input% searches for any values that have "input" in any position, for example. %le% could return Alex, Leopold, or Charles. An exact match is of course best. 
