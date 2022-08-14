@@ -28,10 +28,8 @@ namespace StFrancisHouse.Models
 
         public Nullable<DateTime> LastVisitDate { get; set; }
 
-       // public Nullable<DateTime> MostRecentBackpack { get; set; }
-       // public Nullable<DateTime> MostRecentSleepingBag { get; set; }
-
-        //public Nullable<DateTime> MostRecentVisitDate { get; set; }
+        public Nullable<DateTime> MostRecentBackpack { get; set; }
+        public Nullable<DateTime> MostRecentSleepingBag { get; set; }
 
         public List<Visit> Visits { get; set; }
 
