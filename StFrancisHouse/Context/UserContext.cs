@@ -71,7 +71,7 @@ namespace StFrancisHouse.Models
                 return true;
             }
         }
-        #endregion
+    
 
 
         public static List<Client> addClientsToList(MySqlCommand cmd, List<Client> clients)
@@ -103,6 +103,8 @@ namespace StFrancisHouse.Models
 
             return clients;
         }
+
+        #endregion
 
         //example method to get all Clients from Client Table on DB.
         //Note: May be out of date to modified/newest DB Schema based on sqlver1.0, no updates. 
