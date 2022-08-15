@@ -94,7 +94,7 @@ namespace StFrancisHouse.Models
                         Gender = reader["Gender"].ToString(),
                         //ClientNote = reader["ClientNote"].ToString(),
                         ClientNote = reader["Note"].ToString(),
-                        Banned = varChar1ToBool(reader["Banned"].ToString())
+                        Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
                         //note sure: add latest visitID.
 
                     });
