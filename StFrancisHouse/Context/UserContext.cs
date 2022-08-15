@@ -454,7 +454,7 @@ namespace StFrancisHouse.Models
                             ZipCode = Convert.ToInt32(reader["Zip Code"]),
                             Race = reader["Race"].ToString(),
                             Gender = reader["Gender"].ToString(),
-                            ClientNote = reader["ClientNote"].ToString()
+                            ClientNote = reader["Note"].ToString()
                         });
                     }
                 }
