@@ -58,6 +58,11 @@ namespace StFrancisHouse.Models
         public static bool BoolCheck(object obj, bool value = false)
         {
             return (obj == DBNull.Value ? value : value);
+        }        
+        
+        public static int BoolCheckAsVarChar1(object obj, int value = 0)
+        {
+            return (obj == DBNull.Value ? value : value);
         }
 
         public static bool varChar1ToBool(string input)
@@ -95,7 +100,7 @@ namespace StFrancisHouse.Models
                         //ClientNote = reader["ClientNote"].ToString(),
                         ClientNote = reader["Note"].ToString(),
                         //Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
-                        Banned = varChar1ToBool(Convert.ToInt32((reader["Banned"])).ToString()) //changed to check for null as well. 
+                        Banned = varChar1ToBool(BoolCheckAsVarChar1((reader["Banned"])).ToString()) //changed to check for null as well. 
                         //note sure: add latest visitID.
 
                     });
