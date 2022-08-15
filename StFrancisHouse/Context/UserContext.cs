@@ -94,7 +94,8 @@ namespace StFrancisHouse.Models
                         Gender = reader["Gender"].ToString(),
                         //ClientNote = reader["ClientNote"].ToString(),
                         ClientNote = reader["Note"].ToString(),
-                        Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
+                        //Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
+                        Banned = varChar1ToBool(Convert.ToInt32((reader["Banned"])).ToString()) //changed to check for null as well. 
                         //note sure: add latest visitID.
 
                     });
@@ -438,16 +439,6 @@ namespace StFrancisHouse.Models
             List<Visit> clientsVisits = new List<Visit>();
          
             List<Client> clients = new List<Client>();
-
-            //adjusted formatting for easier cmd string.
-            //string insertLastName = "'" + lastName + "'";
-            //string insertBirthdate = "'" + birthdate + "'";
-
-            //example of required formatting.
-            //string lastname = "Fort";
-            //string firstname = "";
-            //string birthdate = "1935-12-23";
-
 
 
             using (MySqlConnection conn = GetConnection())
