@@ -298,7 +298,7 @@ namespace StFrancisHouse.Models
         }
 
 
-        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode, bool Banned)
+        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string birthdate, string race, string gender, int ZipCode, bool Banned)
         {
             string b_result;
             if(Banned == true)
