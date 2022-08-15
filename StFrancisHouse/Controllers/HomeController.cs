@@ -89,7 +89,7 @@ namespace StFrancisHouse.Controllers
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            context.updateClientByID(clientID,firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode, banned);
+            context.updateClientByID(clientID,firstName, lastName, middleInitial, birthdate, race, gender, ZipCode, banned);
         }
 
         public List<Client> getClientVisits(int clientID)

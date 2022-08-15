@@ -314,7 +314,7 @@ namespace StFrancisHouse.Models
             string insertFirstName = "'" + firstName + "'";
             string insertLastName = "'" + lastName + "'";
             string insertMiddleInitial = "'" + middleInitial + "'";
-            string insertSuffix = "'" + suffix + "'";
+            //string insertSuffix = "'" + suffix + "'";
             string insertBirthdate = "'" + birthdate + "'";
             string insertRace = "'" + race + "'";
             string insertGender = "'" + gender + "'";
