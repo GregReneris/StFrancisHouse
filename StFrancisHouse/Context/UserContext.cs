@@ -385,7 +385,7 @@ namespace StFrancisHouse.Models
             string insertZip = "" + ZipCode + "";
             
 
-            string sqlFormattedValueString = insertFirstName +", " + insertLastName + ", " + insertMiddleInitial + ", " + insertSuffix +", " + insertBirthdate + ", " +insertZip + ", " +
+            string sqlFormattedValueString = insertFirstName +", " + insertLastName + ", " + insertMiddleInitial + ", " + insertBirthdate + ", " +insertZip + ", " +
                 insertRace + ", " + insertGender;
 
             Console.WriteLine(sqlFormattedValueString);
@@ -396,7 +396,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 //Create new client
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO "+ Ctable +"(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO "+ Ctable +"(FirstName, LastName, MI, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
                 Console.WriteLine(cmd.ToString());
 
                 int result = cmd.ExecuteNonQuery();
