@@ -322,7 +322,7 @@ namespace StFrancisHouse.Models
             string insertZip = "" + ZipCode + "";
 
 
-            string sqlFormattedValueString = insertFirstName + ", " + insertLastName + ", " + insertMiddleInitial + ", " + insertSuffix + ", " + insertBirthdate + ", " + insertZip + ", " +
+            string sqlFormattedValueString = insertFirstName + ", " + insertLastName + ", " + insertMiddleInitial + ", " + insertBirthdate + ", " + insertZip + ", " +
                 insertRace + ", " + insertGender;
 
             using (MySqlConnection conn = GetConnection())
@@ -331,7 +331,7 @@ namespace StFrancisHouse.Models
 
                 //Update existing client
                 //MySqlCommand cmd = new MySqlCommand("Update client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ") WHERE CLIENTID = " + clientID, conn);
-                MySqlCommand cmd = new MySqlCommand("Update "+ Ctable +" SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("Update "+ Ctable +" SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
                 
                 
                 Console.WriteLine(cmd.ToString());
