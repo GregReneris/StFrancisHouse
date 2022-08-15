@@ -519,7 +519,8 @@ namespace StFrancisHouse.Models
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO VISIT (ClientID, Date) values (" + clientID +", NOW()) " , conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO " + Vtable + " (ClientID, Date) values (" + clientID +", NOW()) " , conn);
+                //MySqlCommand cmd = new MySqlCommand("INSERT INTO VISIT (ClientID, Date) values (" + clientID +", NOW()) " , conn);
 
                 int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
 
