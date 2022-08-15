@@ -62,7 +62,14 @@ namespace StFrancisHouse.Models
         
         public static int BoolCheckAsVarChar1(object obj, int value = 0)
         {
-            return (obj == DBNull.Value ? value : value);
+            if (obj == DBNull.Value)
+                return 0;
+            else
+            {
+                return ToInt32(obj);
+            }
+
+            //return (obj == DBNull.Value ? value : value);
         }
 
         public static bool varChar1ToBool(string input)
