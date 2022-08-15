@@ -85,7 +85,11 @@ namespace StFrancisHouse.Models
         }
     
 
-
+        /**
+         * 
+         * Banned is problematic since it is stored as a varchar(1) in the DB.
+         * This was to try and avoid null fields, which happened when the new DB was imported.
+         */
         public static List<Client> addClientsToList(MySqlCommand cmd, List<Client> clients)
         {
             using (var reader = cmd.ExecuteReader())
@@ -107,7 +111,7 @@ namespace StFrancisHouse.Models
                         //ClientNote = reader["ClientNote"].ToString(),
                         ClientNote = reader["Note"].ToString(),
                         //Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
-                        Banned = varChar1ToBool(BoolCheckAsVarChar1((reader["Banned"])).ToString()) //changed to check for null as well. 
+                        Banned = varChar1ToBool(BoolCheckAsVarChar1((reader["Banned"])).ToString()) //probably a bonkers way to handle this.
                         //note sure: add latest visitID.
 
                     });
