@@ -394,7 +394,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 //Create new client
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO "+ Ctable +"(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
                 Console.WriteLine(cmd.ToString());
 
                 int result = cmd.ExecuteNonQuery();
