@@ -598,11 +598,11 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 
-                MySqlCommand cmd = new MySqlCommand("UPDATE VISIT SET Mens = '"+ insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids +"', LastBackpack = " +backpackInsert+ ", LastSleepingBag = "+ sleepInsert +", Request = "+ requestInsert +" WHERE visitID =" + visitID, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids +"', LastBackpack = " +backpackInsert+ ", LastSleepingBag = "+ sleepInsert +", Request = "+ requestInsert +" WHERE visitID =" + visitID, conn);
 
                 cmd.ExecuteNonQuery();
 
-                MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM VISIT WHERE visitID =" + visitID, conn);
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM " + Vtable + " WHERE visitID =" + visitID, conn);
 
 
                 using (var reader = cmd2.ExecuteReader())
