@@ -329,7 +329,7 @@ namespace StFrancisHouse.Models
 
                 //Update existing client
                 //MySqlCommand cmd = new MySqlCommand("Update client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ") WHERE CLIENTID = " + clientID, conn);
-                MySqlCommand cmd = new MySqlCommand("Update client SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("Update "+ Ctable +" SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", SUFFIX = "+ insertSuffix +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
                 
                 
                 Console.WriteLine(cmd.ToString());
@@ -353,7 +353,7 @@ namespace StFrancisHouse.Models
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("DELETE FROM CLIENT WHERE ClientID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM " + Ctable + " WHERE ClientID = " + clientID, conn);
 
                 int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
 
