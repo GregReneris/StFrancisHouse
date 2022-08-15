@@ -434,7 +434,7 @@ namespace StFrancisHouse.Models
             {
                 conn.Open();
 
-                MySqlCommand cmd = new MySqlCommand("SELECT * from Client WHERE clientID = " + clientID, conn);
+                MySqlCommand cmd = new MySqlCommand("SELECT * from " + Ctable + " WHERE clientID = " + clientID, conn);
 
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -459,7 +459,7 @@ namespace StFrancisHouse.Models
 
 
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
-                MySqlCommand cmd2 = new MySqlCommand("SELECT * from visit WHERE ClientID =" + clientID , conn);
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * from " + Vtable + " WHERE ClientID =" + clientID , conn);
 
                 //SELECT * from visit
                 //ORDER BY stu_date DESC
