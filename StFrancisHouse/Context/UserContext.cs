@@ -456,26 +456,7 @@ namespace StFrancisHouse.Models
 
                 MySqlCommand cmd = new MySqlCommand("SELECT * from " + Ctable + " WHERE clientID = " + clientID, conn);
 
-                using (var reader = cmd.ExecuteReader())
-                {
-                    //adding information MUST reflect the exact table id inside the [" "]
-                    //whereas the assignments must match the model data. 
-                    while (reader.Read())
-                    {
-                        clients.Add(new Client()
-                        {
-                            ClientID = Convert.ToInt32(reader["ClientID"]),
-                            FirstName = reader["FirstName"].ToString(),
-                            LastName = reader["LastName"].ToString(),
-                            MiddleInitial = reader["MI"].ToString(),
-                            Birthday = reader["Birthday"].ToString(),
-                            ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                            Race = reader["Race"].ToString(),
-                            Gender = reader["Gender"].ToString(),
-                            ClientNote = reader["Note"].ToString()
-                        });
-                    }
-                }
+                clients = addClientsToList(cmd, clients);
 
 
                 //MySqlCommand cmd2 = new MySqlCommand("SELECT client.ClientID, client.FirstName, client.LastName, visit.Date, visit.LastBackpack, visit.LastSleepingBag from client, visit WHERE client.ClientID =" + clientID , conn);
