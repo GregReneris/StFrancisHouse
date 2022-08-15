@@ -362,8 +362,26 @@ namespace StFrancisHouse.Models
             }
         }
 
+        public List<Client> getClientByID(int clientID)
+        {
 
-    
+            List<Client> clients = new List<Client>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM " + Ctable + " WHERE ClientID = " + clientID, conn);
+
+                clients = addClientsToList(cmd, clients);
+            }
+
+            return clients;
+
+        }
+
+
+
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)

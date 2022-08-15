@@ -104,13 +104,13 @@ namespace StFrancisHouse.Controllers
             return clients;
         }
 
-        public Client getClientByID(int clientID)
+        public List<Client> getClientByID(int clientID)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            Client Client = context.getClientByID(clientID);
+           List<Client> clients = context.getClientByID(clientID);
 
-            return Client;
+            return clients;
         }
 
 
