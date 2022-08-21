@@ -140,6 +140,15 @@ namespace StFrancisHouse.Controllers
             context.deleteClientByID(clientID);
         }
 
+        public void deleteVisitByID(int visitID)
+        {
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            context.deleteVisitByID(visitID);
+        }
+
+
+
         public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;

@@ -379,6 +379,19 @@ namespace StFrancisHouse.Models
             }
         }
 
+        public void deleteVisitByID(int visitID)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM " + Vtable + " WHERE VisitID = " + visitID, conn);
+
+                int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
+
+            }
+        }
+
         public List<Client> getClientByID(int clientID)
         {
 
