@@ -83,7 +83,11 @@ namespace StFrancisHouse.Models
                 return true;
             }
         }
-    
+
+        public static double DoubleCheck(object obj, double value = 0)
+        {
+            return (obj == DBNull.Value ? value : value);
+        }
 
         /**
          * 
@@ -295,6 +299,8 @@ namespace StFrancisHouse.Models
                                     
                                     LastBackpack = ToDateTime(reader["LastBackPackDate"]),
                                     LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
+
+                                    busTicket = ToDateTime(reader["busTicket"]),
                                     
                                     //dev table.
                                     //LastBackpack = ToDateTime(reader["LastBackpack"]),
