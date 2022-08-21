@@ -415,12 +415,13 @@ namespace StFrancisHouse.Models
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
-        public void createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
         {
 
             //TODO: return the clientID and the latest / today's new visitID
 
             List<Client> clients = new List<Client>();
+            long lastReturned;
             int numEntry = 2; //change this to user chosen value in production later.  
             
             string insertFirstName = "'" + firstName + "'";
@@ -448,17 +449,14 @@ namespace StFrancisHouse.Models
                 Console.WriteLine(cmd.ToString());
 
                 int result = cmd.ExecuteNonQuery();
-                
-                //INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES("Ken", "Hamilton", "B", "MRS", '1935-12-23', 98344, "N/A", "M");
-
-                //Retrieve this client
-                //MySqlCommand cmd2 = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
 
 
             }
 
-            Console.WriteLine("End of method.");
-            //  return clients;
+            clients = getClientByInfo(firstName, lastName, birthdate);
+
+
+            return clients;
 
         }
 
