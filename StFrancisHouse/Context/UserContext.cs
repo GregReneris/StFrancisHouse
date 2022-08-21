@@ -300,11 +300,11 @@ namespace StFrancisHouse.Models
                                     LastBackpack = ToDateTime(reader["LastBackPackDate"]),
                                     LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
 
-                                    busTicket = ToDateTime(reader["busTicket"]),
-                                    
-                                    //dev table.
-                                    //LastBackpack = ToDateTime(reader["LastBackpack"]),
-                                    //LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
+                                    busTicket = DoubleCheck((reader["busTicket"])),
+                                    diapers = DoubleCheck((reader["diapers"])),
+                                    financialAid = DoubleCheck((reader["financialAid"])),
+                                    giftCard = DoubleCheck((reader["giftCard"])),
+
                                     Request = ToString(reader["Request"])
                                 });
                             }
@@ -513,11 +513,13 @@ namespace StFrancisHouse.Models
                             Womens = ToInt32(reader["Womens"]),
                             Kids = ToInt32(reader["Kids"]),
                             VisitDate = ToDateTime(reader["Date"]),
-                            //LastBackpack = ToDateTime(reader["LastBackpack"]),
-                            //LastSleepingBag = ToDateTime(reader["LastSleepingBag"]),
-
                             LastBackpack = ToDateTime(reader["LastBackPackDate"]),
                             LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
+
+                            busTicket = DoubleCheck((reader["busTicket"])),
+                            diapers = DoubleCheck((reader["diapers"])),
+                            financialAid = DoubleCheck((reader["financialAid"])),
+                            giftCard = DoubleCheck((reader["giftCard"])),
 
                             Request = ToString(reader["Request"])
                         }); 
@@ -577,11 +579,14 @@ namespace StFrancisHouse.Models
                             clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                             clientVisit.VisitDate = ToDateTime(reader["Date"]);
 
-                        //clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
-                        //clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
 
                             clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
                             clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
+
+                            clientVisit.busTicket = DoubleCheck((reader["busTicket"]));
+                            clientVisit.diapers = DoubleCheck((reader["diapers"]));
+                            clientVisit.financialAid = DoubleCheck((reader["financialAid"]));
+                            clientVisit.giftCard = DoubleCheck((reader["giftCard"]));
 
                             clientVisit.Request = reader["Request"].ToString();
                     }
@@ -640,13 +645,15 @@ namespace StFrancisHouse.Models
                         clientVisit.VisitID = Convert.ToInt32(reader["VisitID"]);
                         clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                         clientVisit.VisitDate = ToDateTime(reader["Date"]);
-                        
-                        
-                        //clientVisit.LastBackpack = ToDateTime(reader["LastBackpack"]);
-                        //clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBag"]);
+
 
                         clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
                         clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
+
+                        clientVisit.busTicket = DoubleCheck((reader["busTicket"]));
+                        clientVisit.diapers = DoubleCheck((reader["diapers"]));
+                        clientVisit.financialAid = DoubleCheck((reader["financialAid"]));
+                        clientVisit.giftCard = DoubleCheck((reader["giftCard"]));
 
                         clientVisit.Request = reader["Request"].ToString();
                     }

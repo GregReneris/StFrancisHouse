@@ -28,7 +28,7 @@ namespace StFrancisHouse.Models
         public double busTicket { get; set; }
         public double diapers { get; set; }
         public double financialAid { get; set; }
-        public double giftCards { get; set; }
+        public double giftCard { get; set; }
 
 
         public String Request { get; set; }
