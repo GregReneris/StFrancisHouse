@@ -86,7 +86,14 @@ namespace StFrancisHouse.Models
 
         public static double DoubleCheck(object obj, double value = 0)
         {
-            return (obj == DBNull.Value ? value : value);
+            if (obj == DBNull.Value)
+            {
+                return value;
+            }
+            else
+            {
+                return Convert.ToDouble(obj); 
+            }
         }
 
         /**
@@ -638,6 +645,9 @@ namespace StFrancisHouse.Models
                             clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                             clientVisit.VisitDate = ToDateTime(reader["Date"]);
 
+                            clientVisit.Mens = Convert.ToInt32(reader["Mens"]);
+                            clientVisit.Womens = Convert.ToInt32(reader["Womens"]);
+                            clientVisit.Kids = Convert.ToInt32(reader["Kids"]);
 
                             clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
                             clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
@@ -710,6 +720,9 @@ namespace StFrancisHouse.Models
                         clientVisit.ClientID = Convert.ToInt32(reader["ClientID"]);
                         clientVisit.VisitDate = ToDateTime(reader["Date"]);
 
+                        clientVisit.Mens = Convert.ToInt32(reader["Mens"]);
+                        clientVisit.Womens = Convert.ToInt32(reader["Womens"]);
+                        clientVisit.Kids = Convert.ToInt32(reader["Kids"]);
 
                         clientVisit.LastBackpack = ToDateTime(reader["LastBackPackDate"]);
                         clientVisit.LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
