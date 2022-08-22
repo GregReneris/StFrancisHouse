@@ -257,7 +257,7 @@ namespace StFrancisHouse.Models
                     seperator = " AND ";
                 }
 
-                // adding limit to the number of responses to avoid hitting the query count of 18,000. 
+                // adding limit to the number of responses to avoid hitting the query count of 18,000 because this method is multiplicative. 
                 sqlcmd += " LIMIT 10";
 
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
@@ -398,8 +398,6 @@ namespace StFrancisHouse.Models
 
                 //INSERT INTO client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES("Ken", "Hamilton", "B", "MRS", '1935-12-23', 98344, "N/A", "M");
 
-                //Retrieve this client
-                //MySqlCommand cmd2 = new MySqlCommand("SELECT * from Client WHERE LastName = " + insertLastName + " AND BIRTHDAY = " + insertBirthdate, conn);
 
 
             }
