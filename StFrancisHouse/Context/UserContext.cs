@@ -659,7 +659,8 @@ namespace StFrancisHouse.Models
 
      public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
         {
-            //TODO Add the front end's version parameters in so we line up.
+
+            // STILL PENDING: Adding financial aid, bus tickets, diapsers, and giftcards. 
 
             Visit clientVisit = new Visit();
 
@@ -722,6 +723,8 @@ namespace StFrancisHouse.Models
             return clientVisit;
 
         }
+
+
 
 
 
