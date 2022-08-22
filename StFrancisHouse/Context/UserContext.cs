@@ -657,7 +657,7 @@ namespace StFrancisHouse.Models
         }
 
 
-     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request)
+     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid , int diapers, int giftCard, int busTicket)
         {
 
             // STILL PENDING: Adding financial aid, bus tickets, diapsers, and giftcards. 
@@ -670,6 +670,10 @@ namespace StFrancisHouse.Models
             string backpackInsert = "Current_Date()";
             string sleepInsert = "Current_Date()";
             string requestInsert = "'" + request + "'";
+            int financialAidInsert = financialAid;
+            int diapersInsert = diapers;
+            int giftCardInsert = giftCard;
+            int busTicketInsert = busTicket;
 
 
             if (backpack == false)
@@ -688,7 +692,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 
-                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids + "', SET DATE = Current_Date(),  LastBackPackDate = " + backpackInsert+ ", LastSleepingBagDate = "+ sleepInsert +", Request = "+ requestInsert +" WHERE VisitID =" + visitID, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids + "', LastBackPackDate = " + backpackInsert+ ", LastSleepingBagDate = "+ sleepInsert +", Request = "+ requestInsert +", busTicket = '"+ busTicketInsert +"' , diapers = '"+ diapersInsert +"' , giftCard = '"+ giftCardInsert + "'  WHERE VisitID = " + visitID, conn);
 
                 cmd.ExecuteNonQuery();
 
