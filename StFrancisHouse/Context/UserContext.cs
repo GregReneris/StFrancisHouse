@@ -116,7 +116,7 @@ namespace StFrancisHouse.Models
                         ClientNote = reader["Note"].ToString(),
                         //Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
                         Banned = varChar1ToBool(BoolCheckAsVarChar1((reader["Banned"])).ToString()) //probably a bonkers way to handle this.
-                        //note sure: add latest visitID.
+                        //not sure: add latest visitID.
 
                     });
                 }
@@ -206,6 +206,8 @@ namespace StFrancisHouse.Models
             //int numEntry = 50; //change this to user chosen value in production later.  
             List<Visit> clientsVisits = new List<Visit>();
             int numVisits = 1;
+            int c0ID;
+
 
             //adjusted formatting for easier cmd string.
             //string insertLastName = "'" + lastName + "'";
@@ -249,7 +251,7 @@ namespace StFrancisHouse.Models
                 }
 
                 // adding limit to the number of responses to avoid hitting the query count of 18,000. 
-                sqlcmd += " LIMIT 15";
+                sqlcmd += " LIMIT 10";
 
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
@@ -310,7 +312,30 @@ namespace StFrancisHouse.Models
                             }
                         }
 
-                        clients[counter].Visits = clientsVisits2;
+                        clients[counter].Visits = clientsVisits2; 
+
+                        /*
+                         * NEW STUFF 8/22
+                        */
+                        c0ID = clients[counter].ClientID;
+
+                        MySqlCommand cmd3 = new MySqlCommand("SELECT ClientID, MAX(Date) AS Date, MAX(VisitID) AS VisitID, MAX(LastBackPackDate) AS LastBackPackDate, MAX(LastSleepingBagDate) AS LastSleepingBagDate FROM assistances a WHERE ClientID = " + c0ID + " GROUP BY ClientID", conn);
+
+                        using (var reader = cmd3.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                clients[counter].MostRecentBackpack = ToDateTime(reader["LastBackPackDate"]);
+                                clients[counter].LastVisitID = ToInt32(reader["VisitID"]);
+                                clients[counter].MostRecentSleepingBag = ToDateTime(reader["LastSleepingBagDate"]);
+                                clients[counter].LastVisitDate = ToDateTime(reader["Date"]);
+                                
+                            }
+                        }
+                        /*
+                         * end new stuff 8/22
+                         */
+
                         counter++;
                     }
                 }
@@ -333,7 +358,9 @@ namespace StFrancisHouse.Models
                 b_result = "0";
             }
 
-            
+            //TODO: UPDATE WITH LATEST FIELDS
+
+
             string insertFirstName = "'" + firstName + "'";
             string insertLastName = "'" + lastName + "'";
             string insertMiddleInitial = "'" + middleInitial + "'";
@@ -344,6 +371,7 @@ namespace StFrancisHouse.Models
             string insertBool = "'" + b_result + "'";
             string insertZip = "" + ZipCode + "";
 
+            
 
             string sqlFormattedValueString = insertFirstName + ", " + insertLastName + ", " + insertMiddleInitial + ", " + insertBirthdate + ", " + insertZip + ", " +
                 insertRace + ", " + insertGender;
