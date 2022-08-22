@@ -673,11 +673,11 @@ namespace StFrancisHouse.Models
 
             if (backpack == false)
             {
-                backpackInsert = "1111-11-11";
+                backpackInsert = "0000-00-00";
             }
             if(sleepingbag == false)
             {
-                sleepInsert = "1111-11-11";
+                sleepInsert = "0000-00-00";
             }
 
 
@@ -687,7 +687,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 
-                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids +"', LastBackpack = " +backpackInsert+ ", LastSleepingBag = "+ sleepInsert +", Request = "+ requestInsert +" WHERE visitID =" + visitID, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids + "', SET DATE = Current_Date(),  LastBackPackDate = " + backpackInsert+ ", LastSleepingBagDate = "+ sleepInsert +", Request = "+ requestInsert +" WHERE VisitID =" + visitID, conn);
 
                 cmd.ExecuteNonQuery();
 
