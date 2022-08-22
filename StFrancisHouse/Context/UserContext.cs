@@ -670,7 +670,7 @@ namespace StFrancisHouse.Models
      public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid , int diapers, int giftCard, int busTicket)
         {
 
-            // STILL PENDING: Adding financial aid, bus tickets, diapsers, and giftcards. 
+            // STILL PENDING: Financial Aid was causing problems. So its the only one left out at the moment.
 
             Visit clientVisit = new Visit();
 
