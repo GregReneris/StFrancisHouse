@@ -127,6 +127,16 @@ namespace StFrancisHouse.Controllers
             return Visit;
         }
 
+        public string getLatestVisitByClientID(int clientID)
+        {
+
+            UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
+
+            string visitID = context.getLatestVisitByClientID(clientID);
+
+            return visitID;
+
+        }
 
 
         public string createClientVisitByID(int clientID)

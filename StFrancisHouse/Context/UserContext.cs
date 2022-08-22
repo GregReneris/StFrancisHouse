@@ -569,6 +569,26 @@ namespace StFrancisHouse.Models
             return result3;
         }
 
+        public string getLatestVisitByClientID(int clientID)
+        {
+            object result2;
+            string result3;
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM " + Vtable + " WHERE ClientID = " + clientID + " GROUP BY VisitID DESC", conn);
+
+                result2 = cmd2.ExecuteScalar();
+                //consider returning the visit or at least the visitID
+                result3 = result2.ToString();
+
+            }
+
+            return result3;
+        }
+
         public Visit getVisitByID(int visitID)
         {
             Visit clientVisit = new Visit();
