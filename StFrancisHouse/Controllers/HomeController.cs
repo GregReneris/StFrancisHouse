@@ -129,11 +129,12 @@ namespace StFrancisHouse.Controllers
 
 
 
-        public void createClientVisitByID(int clientID)
+        public string createClientVisitByID(int clientID)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            context.createClientVisitByID(clientID);
+            string result = context.createClientVisitByID(clientID);
+            return result;
         }
 
         public void deleteClientByID(int clientID)

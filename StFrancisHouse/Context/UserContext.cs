@@ -539,8 +539,10 @@ namespace StFrancisHouse.Models
          * 
          * Requires client ID to add a visit to.
          */
-        public void createClientVisitByID(int clientID)
+        public string createClientVisitByID(int clientID)
         {
+            object result2;
+            string result3;
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -549,13 +551,22 @@ namespace StFrancisHouse.Models
                 MySqlCommand cmd = new MySqlCommand("INSERT INTO " + Vtable + "(ClientID, Date) values (" + clientID +", NOW()) " , conn);
                 //MySqlCommand cmd = new MySqlCommand("INSERT INTO VISIT (ClientID, Date) values (" + clientID +", NOW()) " , conn);
 
+               
                 int result = cmd.ExecuteNonQuery(); //this returns how many rows were effected
 
+
+
+                MySqlCommand cmd2 = new MySqlCommand("SELECT * FROM " + Vtable + " WHERE ClientID = " + clientID + " GROUP BY VisitID DESC", conn);
+
+                result2 = cmd2.ExecuteScalar();
                 //consider returning the visit or at least the visitID
+                result3 = result2.ToString();
+                
 
-
-                Console.WriteLine(); //WriteLine for break point usage
+                Console.WriteLine(result2); //WriteLine for break point usage
             }
+
+            return result3;
         }
 
         public Visit getVisitByID(int visitID)
