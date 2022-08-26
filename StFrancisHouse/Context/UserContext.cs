@@ -429,6 +429,11 @@ namespace StFrancisHouse.Models
                 sqlcmd += " LirstName = " + insertLastName + " " + seperator;
             }            
             
+            if(middleInitial != null)
+            {
+                sqlcmd += " MI = " + insertMiddleInitial + " " + seperator;
+            }
+
             if (birthdate != null)
             {
                 sqlcmd += " Birthday = " + insertBirthdate + " " + seperator;
@@ -451,7 +456,8 @@ namespace StFrancisHouse.Models
             }
 
             updateCmd = sqlcmd + sqlcmdEnd;
-
+            
+            Console.WriteLine(updateCmd);
 
 
             using (MySqlConnection conn = GetConnection())
