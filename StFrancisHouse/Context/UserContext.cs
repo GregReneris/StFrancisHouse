@@ -52,7 +52,15 @@ namespace StFrancisHouse.Models
 
         public static string ToString(object obj, string value = "none")
         {
-            return (obj == DBNull.Value ? value : value.ToString());
+            //return (obj == DBNull.Value ? value : value.ToString());
+            if (obj == DBNull.Value)
+                return value;
+            else
+            {
+                return obj.ToString();
+
+            }
+
         }
 
         public static bool BoolCheck(object obj, bool value = false)
@@ -109,18 +117,32 @@ namespace StFrancisHouse.Models
                 //whereas the assignments must match the model data. 
                 while (reader.Read())
                 {
+
+                    if(reader.HasRows == true)
+                    {
+                        Console.WriteLine("Here and exists");
+                    }
+
                     clients.Add(new Client()
                     {
+                        //Adding ToString(obj) around the strings to handle dbnull errors
                         ClientID = Convert.ToInt32(reader["ClientID"]),
-                        FirstName = reader["FirstName"].ToString(),
-                        LastName = reader["LastName"].ToString(),
-                        MiddleInitial = reader["MI"].ToString(),
-                        Birthday = reader["Birthday"].ToString(),
+                        FirstName = ToString(reader["FirstName"]).ToString(),
+                        LastName = ToString(reader["LastName"]).ToString(),
+                        MiddleInitial = ToString(reader["MI"]).ToString(),
+                        Birthday = ToDateTime(reader["Birthday"]).ToString(),
+                        
+                        
                         ZipCode = Convert.ToInt32(reader["Zip Code"]),
-                        Race = reader["Race"].ToString(),
-                        Gender = reader["Gender"].ToString(),
+                        
+                        
+                        Race = ToString(reader["Race"]).ToString(),
+                        Gender = ToString(reader["Gender"]).ToString(),
+                        
+                        
+                        
                         //ClientNote = reader["ClientNote"].ToString(),
-                        ClientNote = reader["Note"].ToString(),
+                        ClientNote = ToString(reader["Note"]).ToString(),
                         //Banned = BoolCheck(varChar1ToBool(reader["Banned"].ToString())) //changed to check for null as well. 
                         Banned = varChar1ToBool(BoolCheckAsVarChar1((reader["Banned"])).ToString()) //probably a bonkers way to handle this.
                         //not sure: add latest visitID.
@@ -295,27 +317,37 @@ namespace StFrancisHouse.Models
                             //adding information MUST reflect the exact table id inside the [" "]
                             //whereas the assignments must match the model data. 
 
-                            while (reader.Read())
+                            if (reader.HasRows == true)
                             {
-                                clientsVisits2.Add(new Visit()
+
+
+
+
+                                while (reader.Read())
                                 {
-                                    VisitID = ToInt32(reader["VisitID"]),
-                                    ClientID = ToInt32(reader["ClientID"]),
-                                    Mens = ToInt32(reader["Mens"]),
-                                    Womens = ToInt32(reader["Womens"]),
-                                    Kids = ToInt32(reader["Kids"]),
-                                    VisitDate = ToDateTime(reader["Date"]),
-                                    
-                                    LastBackpack = ToDateTime(reader["LastBackPackDate"]),
-                                    LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
 
-                                    busTicket = DoubleCheck((reader["busTicket"])),
-                                    diapers = DoubleCheck((reader["diapers"])),
-                                    financialAid = DoubleCheck((reader["financialAid"])),
-                                    giftCard = DoubleCheck((reader["giftCard"])),
 
-                                    Request = ToString(reader["Request"])
-                                });
+
+                                    clientsVisits2.Add(new Visit()
+                                    {
+                                        VisitID = ToInt32(reader["VisitID"]),
+                                        ClientID = ToInt32(reader["ClientID"]),
+                                        Mens = ToInt32(reader["Mens"]),
+                                        Womens = ToInt32(reader["Womens"]),
+                                        Kids = ToInt32(reader["Kids"]),
+                                        VisitDate = ToDateTime(reader["Date"]),
+
+                                        LastBackpack = ToDateTime(reader["LastBackPackDate"]),
+                                        LastSleepingBag = ToDateTime(reader["LastSleepingBagDate"]),
+
+                                        busTicket = DoubleCheck((reader["busTicket"])),
+                                        diapers = DoubleCheck((reader["diapers"])),
+                                        financialAid = DoubleCheck((reader["financialAid"])),
+                                        giftCard = DoubleCheck((reader["giftCard"])),
+
+                                        Request = ToString(reader["Request"])
+                                    });
+                                }
                             }
                         }
 
@@ -378,10 +410,49 @@ namespace StFrancisHouse.Models
             string insertBool = "'" + b_result + "'";
             string insertZip = "" + ZipCode + "";
 
-            
 
-            string sqlFormattedValueString = insertFirstName + ", " + insertLastName + ", " + insertMiddleInitial + ", " + insertBirthdate + ", " + insertZip + ", " +
-                insertRace + ", " + insertGender;
+
+
+            string sqlcmd = "Update " + Ctable + " SET ";
+            string sqlcmdEnd = " Banned = " + insertBool + " WHERE ClientID = " + clientID;
+            string updateCmd;
+
+            string seperator = ",";
+
+            if (firstName != null)
+            {
+                sqlcmd += " FirstName = " + insertFirstName + " " + seperator;
+            }
+        
+            if (lastName != null)
+            {
+                sqlcmd += " LirstName = " + insertLastName + " " + seperator;
+            }            
+            
+            if (birthdate != null)
+            {
+                sqlcmd += " Birthday = " + insertBirthdate + " " + seperator;
+            }
+        
+            if (race != null)
+            {
+                sqlcmd += " MI = " + insertMiddleInitial + " " + seperator;
+            }
+
+            if (gender != null)
+            {
+                sqlcmd += " Gender = " + insertGender + " " + seperator;
+            }
+
+            //CHECK THIS 
+            if(ZipCode != 0)
+            {
+                sqlcmd += "`Zip Code` = " + insertZip + " " + seperator; 
+            }
+
+            updateCmd = sqlcmd + sqlcmdEnd;
+
+
 
             using (MySqlConnection conn = GetConnection())
             {
@@ -389,8 +460,11 @@ namespace StFrancisHouse.Models
 
                 //Update existing client
                 //MySqlCommand cmd = new MySqlCommand("Update client(FirstName, LastName, MI, SUFFIX, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ") WHERE CLIENTID = " + clientID, conn);
-                MySqlCommand cmd = new MySqlCommand("Update "+ Ctable +" SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
-                
+                //MySqlCommand cmd = new MySqlCommand("Update "+ Ctable +" SET FirstName = "+ insertFirstName +", LastName = "+ insertLastName +", MI = "+ insertMiddleInitial +", Birthday ="+ insertBirthdate +", `Zip Code` = "+ insertZip+", Race = "+ insertRace +" , Gender = "+insertGender+", Banned =" + insertBool + " WHERE ClientID = " + clientID, conn);
+
+                //new adjustable update command
+
+                MySqlCommand cmd = new MySqlCommand(updateCmd, conn);
                 
                 Console.WriteLine(cmd.ToString());
 
