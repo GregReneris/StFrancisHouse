@@ -88,11 +88,11 @@ namespace StFrancisHouse.Controllers
 
         }
 
-        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string birthdate, string race, string gender, int ZipCode, bool banned)
+        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string birthdate, string race, string gender, int numKids, int ZipCode, bool banned)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            context.updateClientByID(clientID,firstName, lastName, middleInitial, birthdate, race, gender, ZipCode, banned);
+            context.updateClientByID(clientID,firstName, lastName, middleInitial, birthdate, race, gender, numKids, ZipCode, banned);
         }
 
         public List<Client> getClientVisits(int clientID)
