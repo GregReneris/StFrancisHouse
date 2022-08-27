@@ -140,7 +140,7 @@ namespace StFrancisHouse.Models
                         Gender = ToString(reader["Gender"]).ToString(),
                         
                         
-                        numFamily = ToInt32(reader["NumKids"]),
+                        numFamily = ToInt32(reader["NumKids"]), //maybe should be a doubleCheck() instead?
 
                         //ClientNote = reader["ClientNote"].ToString(),
                         ClientNote = ToString(reader["Note"]).ToString(),
