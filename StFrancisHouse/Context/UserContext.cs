@@ -426,7 +426,7 @@ namespace StFrancisHouse.Models
         
             if (lastName != null)
             {
-                sqlcmd += " LirstName = " + insertLastName + " " + seperator;
+                sqlcmd += " LastName = " + insertLastName + " " + seperator;
             }            
             
             if(middleInitial != null)
