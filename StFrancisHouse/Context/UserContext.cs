@@ -385,7 +385,7 @@ namespace StFrancisHouse.Models
         }
 
 
-        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string birthdate, string race, string gender, int ZipCode, bool Banned)
+        public void updateClientByID(int clientID, string firstName, string lastName, string middleInitial, string birthdate, string race, string gender, int numKids, int ZipCode, bool Banned)
         {
             string b_result;
             if(Banned == true)
@@ -409,6 +409,7 @@ namespace StFrancisHouse.Models
             string insertGender = "'" + gender + "'";
             string insertBool = "'" + b_result + "'";
             string insertZip = "" + ZipCode + "";
+            string insertNumKids = "" + numKids + "";
 
 
 
@@ -437,6 +438,11 @@ namespace StFrancisHouse.Models
             if (birthdate != null)
             {
                 sqlcmd += " Birthday = " + insertBirthdate + " " + seperator;
+            }
+
+            if(numKids != null)
+            {
+                sqlcmd += " NumKids " + insertNumKids + " " + seperator;
             }
         
             if (race != null)
