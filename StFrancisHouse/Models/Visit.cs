@@ -29,10 +29,9 @@ namespace StFrancisHouse.Models
         public double diapers { get; set; }
         public double financialAid { get; set; }
         public double giftCard { get; set; }
-
-
         public String Request { get; set; }
 
+        public String HouseHoldItems { get; set; }
 
         //TODO adjust model to fit the front end.
 
