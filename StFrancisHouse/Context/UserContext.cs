@@ -466,7 +466,7 @@ namespace StFrancisHouse.Models
 
             updateCmd = sqlcmd + sqlcmdEnd;
             
-            Console.WriteLine(updateCmd);
+            //Console.WriteLine(updateCmd);
 
 
             using (MySqlConnection conn = GetConnection())
