@@ -421,6 +421,8 @@ namespace StFrancisHouse.Models
             string sqlcmdEnd = " Banned = " + insertBool + " WHERE ClientID = " + clientID;
             string updateCmd;
 
+
+
             string seperator = ",";
 
             if (firstName != null)
@@ -443,9 +445,9 @@ namespace StFrancisHouse.Models
                 sqlcmd += " Birthday = " + insertBirthdate + " " + seperator;
             }
 
-            if(numKids != null)
+            if(numKids != 0)
             {
-                sqlcmd += " NumKids " + insertNumKids + " " + seperator;
+                sqlcmd += " NumKids = " + insertNumKids + " " + seperator;
             }
         
             if (race != null)
@@ -466,7 +468,7 @@ namespace StFrancisHouse.Models
 
             updateCmd = sqlcmd + sqlcmdEnd;
             
-            //Console.WriteLine(updateCmd);
+            Console.WriteLine(updateCmd);
 
 
             using (MySqlConnection conn = GetConnection())
