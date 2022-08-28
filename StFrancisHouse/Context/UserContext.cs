@@ -545,7 +545,7 @@ namespace StFrancisHouse.Models
 
 
         //public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
-        public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        public List<Client> createNewClient(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int numKids, int ZipCode)
         {
 
             //TODO: return the clientID and the latest / today's new visitID
@@ -562,10 +562,11 @@ namespace StFrancisHouse.Models
             string insertRace = "'" + race + "'";
             string insertGender = "'" + gender + "'";
             string insertZip = "" + ZipCode + "";
-            
+            string insertNumKids = "'" + numKids + "'";
+
 
             string sqlFormattedValueString = insertFirstName +", " + insertLastName + ", " + insertMiddleInitial + ", " + insertBirthdate + ", " +insertZip + ", " +
-                insertRace + ", " + insertGender;
+                insertRace + ", " + insertGender + ", " + insertNumKids;
 
             Console.WriteLine(sqlFormattedValueString);
             //define client variables.
@@ -575,7 +576,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 //Create new client
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO "+ Ctable +"(FirstName, LastName, MI, Birthday, `Zip Code`, Race, Gender) VALUES ( " + sqlFormattedValueString + ")" , conn);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO "+ Ctable +"(FirstName, LastName, MI, Birthday, `Zip Code`, Race, Gender, NumKids) VALUES ( " + sqlFormattedValueString + ")" , conn);
                 Console.WriteLine(cmd.ToString());
 
                 int result = cmd.ExecuteNonQuery();

@@ -73,7 +73,7 @@ namespace StFrancisHouse.Controllers
          * First Name Last Name and birthday are now required fields. 
          * @returns a list of the client added to the DB.
          */
-        public List<Client> postClientbyInfo(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int ZipCode)
+        public List<Client> postClientbyInfo(string firstName, string lastName, string middleInitial, string suffix, string birthdate, string race, string gender, int numFamily, int ZipCode)
         {
 
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
@@ -82,7 +82,7 @@ namespace StFrancisHouse.Controllers
             //List<Client> clients = context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
             //context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
 
-            List<Client> clients = context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, ZipCode);
+            List<Client> clients = context.createNewClient(firstName, lastName, middleInitial, suffix, birthdate, race, gender, numFamily, ZipCode);
 
             return clients;
 
