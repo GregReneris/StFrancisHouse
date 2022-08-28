@@ -163,11 +163,11 @@ namespace StFrancisHouse.Controllers
 
 
 
-        public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid, int diapers, int giftCard, int busTicket)
+        public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid, int diapers, int giftCard, int busTicket, string houseHoldItems)
         {
             UserContext context = HttpContext.RequestServices.GetService(typeof(StFrancisHouse.Models.UserContext)) as UserContext;
 
-            Visit Visit = context.checkout(visitID, mens, womens, kids, backpack, sleepingbag, request, financialAid , diapers, giftCard, busTicket);
+            Visit Visit = context.checkout(visitID, mens, womens, kids, backpack, sleepingbag, request, financialAid , diapers, giftCard, busTicket, houseHoldItems);
 
             return Visit;
         }

@@ -347,7 +347,7 @@ namespace StFrancisHouse.Models
                                         diapers = DoubleCheck((reader["diapers"])),
                                         financialAid = DoubleCheck((reader["financialAid"])),
                                         giftCard = DoubleCheck((reader["giftCard"])),
-
+                                        HouseHoldItems = ToString(reader["HouseHoldItems"]),
                                         Request = ToString(reader["Request"])
                                     });
                                 }
@@ -468,7 +468,7 @@ namespace StFrancisHouse.Models
 
             updateCmd = sqlcmd + sqlcmdEnd;
             
-            Console.WriteLine(updateCmd);
+            //Console.WriteLine(updateCmd);
 
 
             using (MySqlConnection conn = GetConnection())
@@ -644,7 +644,7 @@ namespace StFrancisHouse.Models
                             diapers = DoubleCheck((reader["diapers"])),
                             financialAid = DoubleCheck((reader["financialAid"])),
                             giftCard = DoubleCheck((reader["giftCard"])),
-
+                            HouseHoldItems = ToString(reader["HouseHoldItems"]),
                             Request = ToString(reader["Request"])
                         }); 
                     }
@@ -745,6 +745,7 @@ namespace StFrancisHouse.Models
                             clientVisit.diapers = DoubleCheck((reader["diapers"]));
                             clientVisit.financialAid = DoubleCheck((reader["financialAid"]));
                             clientVisit.giftCard = DoubleCheck((reader["giftCard"]));
+                            clientVisit.HouseHoldItems = ToString(reader["HouseHoldItems"]);
 
                             clientVisit.Request = reader["Request"].ToString();
                     }
@@ -756,7 +757,7 @@ namespace StFrancisHouse.Models
         }
 
 
-     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid , int diapers, int giftCard, int busTicket)
+     public Visit checkout(int visitID, int mens, int womens, int kids, bool backpack, bool sleepingbag, string request, int financialAid , int diapers, int giftCard, int busTicket, string houseHoldItems)
         {
 
             // STILL PENDING: Financial Aid was causing problems. So its the only one left out at the moment.
@@ -773,6 +774,7 @@ namespace StFrancisHouse.Models
             int diapersInsert = diapers;
             int giftCardInsert = giftCard;
             int busTicketInsert = busTicket;
+            string houseHoldItemsInsert = "'" + houseHoldItems + "'";
 
 
             if (backpack == false)
@@ -791,7 +793,7 @@ namespace StFrancisHouse.Models
                 conn.Open();
 
                 
-                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids + "', LastBackPackDate = " + backpackInsert+ ", LastSleepingBagDate = "+ sleepInsert +", Request = "+ requestInsert +", busTicket = '"+ busTicketInsert +"' , diapers = '"+ diapersInsert +"' , giftCard = '"+ giftCardInsert + "'  WHERE VisitID = " + visitID, conn);
+                MySqlCommand cmd = new MySqlCommand("UPDATE " + Vtable + " SET Mens = '" + insertMens +"' , Womens = '"+ insertWomens +"', Kids = '"+ insertKids + "', LastBackPackDate = " + backpackInsert+ ", LastSleepingBagDate = "+ sleepInsert +", Request = "+ requestInsert +", HouseHoldItems = " + houseHoldItemsInsert + " , busTicket = '"+ busTicketInsert +"' , diapers = '"+ diapersInsert +"' , giftCard = '"+ giftCardInsert + "'  WHERE VisitID = " + visitID, conn);
 
                 cmd.ExecuteNonQuery();
 
@@ -820,6 +822,7 @@ namespace StFrancisHouse.Models
                         clientVisit.diapers = DoubleCheck((reader["diapers"]));
                         clientVisit.financialAid = DoubleCheck((reader["financialAid"]));
                         clientVisit.giftCard = DoubleCheck((reader["giftCard"]));
+                        clientVisit.HouseHoldItems = ToString(reader["HouseHoldItems"]);
 
                         clientVisit.Request = reader["Request"].ToString();
                     }
