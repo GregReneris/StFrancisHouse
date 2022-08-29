@@ -283,7 +283,7 @@ namespace StFrancisHouse.Models
                 }
 
                 // adding limit to the number of responses to avoid hitting the query count of 18,000 because this method is multiplicative. 
-                sqlcmd += " LIMIT 10";
+                sqlcmd += " LIMIT 100";
 
                 MySqlCommand cmd = new MySqlCommand(sqlcmd, conn);
 
