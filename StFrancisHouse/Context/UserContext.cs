@@ -241,14 +241,27 @@ namespace StFrancisHouse.Models
             int c0ID;
 
 
-            //adjusted formatting for easier cmd string.
-            //string insertLastName = "'" + lastName + "'";
-            //string insertBirthdate = "'" + birthdate + "'";
+            //TODO: IF ALL NULL PARAMS
+            if(firstName == null && lastName == null && birthdate == null)
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
 
-            //example of required formatting.
-            //string lastname = "Fort";
-            //string firstname = "";
-            //string birthdate = "1935-12-23";
+                    string sqlcmdNulls = "SELECT * from " + Ctable;
+
+                    MySqlCommand cmd10 = new MySqlCommand(sqlcmdNulls, conn);
+
+                    clients = addClientsToList(cmd10, clients);
+
+                    return clients;
+
+                }
+            }
+
+
+
+
 
             using (MySqlConnection conn = GetConnection())
             {
